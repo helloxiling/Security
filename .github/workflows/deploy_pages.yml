@@ -30,6 +30,12 @@ jobs:
             "gh_pages_html": "attestation-of-system-components/HEAD"
           },
           {
+            "src": "specifications/composite-eat-profile/spec.ocp",
+            "append_git_rev_to_version": true,
+            "gh_pages_html": "composite-eat-profile/HEAD",
+            "gh_pages_pdf": "composite-eat-profile/HEAD/pdf"
+          },
+          {
             "src": "specifications/device-identity-provisioning/spec.ocp",
             "append_git_rev_to_version": true,
             "gh_pages_html": "device-identity-provisioning/HEAD",

@@ -1,0 +1,93 @@
+; OCP Composite EAT profile CDDL.
+; Requested profile OID: 1.3.6.1.4.1.42623.1.4, pending OCP approval.
+; Its tag-112 content is h'82cc7f0104'. The profile-oid value will be fixed
+; after approval. This placeholder type MUST NOT be treated as authorization to
+; emit an arbitrary PEN-relative OID.
+
+composite-bundle = #6.602([
+  main-token: bstr .cbor composite-eat,
+  detached-claims-sets: {
+    + env-id => bstr .cbor detached-claims-set
+  }
+])
+
+composite-eat = #6.61(#6.18([
+  protected: bstr .cbor protected-headers,
+  unprotected: unprotected-headers,
+  payload: bstr .cbor composite-eat-claims,
+  signature: bstr
+]))
+
+protected-headers = {
+  1: -35,
+  3: "application/eat+cwt",
+  34: certificate-thumbprint
+}
+
+certificate-thumbprint = [ -43, bstr .size 48 ]
+
+unprotected-headers = {
+  33: cose-x509-chain
+}
+
+cose-x509-chain = bstr / [ 2* bstr ]
+
+composite-eat-claims = {
+  10: bstr .size 32,
+  265: profile-oid,
+  256: bstr .size (7..33),
+  273: measurements-type,
+  266: submods-type
+}
+
+profile-oid = #6.112(bstr)
+
+; concise-evidence-map is defined by the TCG DICE Concise Evidence Binding for
+; SPDM specification and is an external CDDL dependency of this profile.
+measurements-type = [ + lead-attester-concise-evidence ]
+
+lead-attester-concise-evidence = [
+  content-format: 10571,
+  value: bstr .cbor concise-evidence-map
+]
+
+submods-type = { + env-id => detached-submodule-digest }
+
+detached-submodule-digest = [
+  hash-alg: -43,
+  digest: bstr .size 48
+]
+
+detached-claims-set = {
+  299 => native-evidence-cmw
+}
+
+native-evidence-cmw = spdm-evidence-cmw /
+                      device-eat-cmw /
+                      composite-eat-bundle-cmw
+
+spdm-evidence-cmw = [
+  type: "application/spdm-evidence+cbor",
+  value: bstr .cbor spdm-evidence,
+  ind: 4
+]
+
+spdm-evidence = [
+  signed-measurements: bstr,
+  cert-chain: bstr,
+  ? vca: bstr
+]
+
+device-eat-cmw = [
+  type: "application/eat+cwt",
+  device-token: bstr,
+  ind: 4
+]
+
+composite-eat-bundle-cmw = [
+  type: "application/eat-bun+cbor",
+  value: bstr .cbor composite-bundle,
+  ind: 4
+]
+
+env-id = tstr .size (5..64)
