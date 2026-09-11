@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>OCP Composite EAT Profile for Platform Inventory Attestation</title>
+  <style>
+
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+} </style>
+  <link href="data:text/css,%0A%0A%2Emarkdown%2Dbody%20%7B%0A%2D%2Dbase%2Dsize%2D4%3A%200%2E25rem%3B%0A%2D%2Dbase%2Dsize%2D8%3A%200%2E5rem%3B%0A%2D%2Dbase%2Dsize%2D16%3A%201rem%3B%0A%2D%2Dbase%2Dsize%2D24%3A%201%2E5rem%3B%0A%2D%2Dbase%2Dsize%2D40%3A%202%2E5rem%3B%0A%2D%2Dbase%2Dtext%2Dweight%2Dnormal%3A%20400%3B%0A%2D%2Dbase%2Dtext%2Dweight%2Dmedium%3A%20500%3B%0A%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%3A%20600%3B%0A%2D%2DfontStack%2Dmonospace%3A%20ui%2Dmonospace%2C%20SFMono%2DRegular%2C%20SF%20Mono%2C%20Menlo%2C%20Consolas%2C%20Liberation%20Mono%2C%20monospace%3B%0A%2D%2DfgColor%2Daccent%3A%20Highlight%3B%0A%7D%0A%40media%20%28prefers%2Dcolor%2Dscheme%3A%20dark%29%20%7B%0A%2Emarkdown%2Dbody%2C%20%5Bdata%2Dtheme%3D%22dark%22%5D%20%7B%0A%0Acolor%2Dscheme%3A%20dark%3B%0A%2D%2Dfocus%2DoutlineColor%3A%20%231f6feb%3B%0A%2D%2DfgColor%2Ddefault%3A%20%23f0f6fc%3B%0A%2D%2DfgColor%2Dmuted%3A%20%239198a1%3B%0A%2D%2DfgColor%2Daccent%3A%20%234493f8%3B%0A%2D%2DfgColor%2Dsuccess%3A%20%233fb950%3B%0A%2D%2DfgColor%2Dattention%3A%20%23d29922%3B%0A%2D%2DfgColor%2Ddanger%3A%20%23f85149%3B%0A%2D%2DfgColor%2Ddone%3A%20%23ab7df8%3B%0A%2D%2DbgColor%2Ddefault%3A%20%230d1117%3B%0A%2D%2DbgColor%2Dmuted%3A%20%23151b23%3B%0A%2D%2DbgColor%2Dneutral%2Dmuted%3A%20%23656c7633%3B%0A%2D%2DbgColor%2Dattention%2Dmuted%3A%20%23bb800926%3B%0A%2D%2DborderColor%2Ddefault%3A%20%233d444d%3B%0A%2D%2DborderColor%2Dmuted%3A%20%233d444db3%3B%0A%2D%2DborderColor%2Dneutral%2Dmuted%3A%20%233d444db3%3B%0A%2D%2DborderColor%2Daccent%2Demphasis%3A%20%231f6feb%3B%0A%2D%2DborderColor%2Dsuccess%2Demphasis%3A%20%23238636%3B%0A%2D%2DborderColor%2Dattention%2Demphasis%3A%20%239e6a03%3B%0A%2D%2DborderColor%2Ddanger%2Demphasis%3A%20%23da3633%3B%0A%2D%2DborderColor%2Ddone%2Demphasis%3A%20%238957e5%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcomment%3A%20%239198a1%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%3A%20%2379c0ff%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%2Dother%2Dreference%2Dlink%3A%20%23a5d6ff%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%3A%20%23d2a8ff%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstorage%2Dmodifier%2Dimport%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%2Dtag%3A%20%237ee787%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dkeyword%3A%20%23ff7b72%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%3A%20%23a5d6ff%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dvariable%3A%20%23ffa657%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dunmatched%3A%20%23f85149%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dangle%3A%20%239198a1%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dtext%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dbg%3A%20%238e1519%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dtext%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dbg%3A%20%23b62324%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%2Dregexp%3A%20%237ee787%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dlist%3A%20%23f2cc60%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dheading%3A%20%231f6feb%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ditalic%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dbold%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dtext%3A%20%23ffdcd7%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dbg%3A%20%2367060c%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dtext%3A%20%23aff5b4%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dbg%3A%20%23033a16%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dtext%3A%20%23ffdfb6%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dbg%3A%20%235a1e02%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dtext%3A%20%23f0f6fc%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dbg%3A%20%231158c7%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmeta%2Ddiff%2Drange%3A%20%23d2a8ff%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dsublimelinter%2Dgutter%2Dmark%3A%20%233d444d%3B%0A%7D%0A%7D%0A%40media%20%28prefers%2Dcolor%2Dscheme%3A%20light%29%20%7B%0A%2Emarkdown%2Dbody%2C%20%5Bdata%2Dtheme%3D%22light%22%5D%20%7B%0A%0Acolor%2Dscheme%3A%20light%3B%0A%2D%2Dfocus%2DoutlineColor%3A%20%230969da%3B%0A%2D%2DfgColor%2Ddefault%3A%20%231f2328%3B%0A%2D%2DfgColor%2Dmuted%3A%20%2359636e%3B%0A%2D%2DfgColor%2Daccent%3A%20%230969da%3B%0A%2D%2DfgColor%2Dsuccess%3A%20%231a7f37%3B%0A%2D%2DfgColor%2Dattention%3A%20%239a6700%3B%0A%2D%2DfgColor%2Ddanger%3A%20%23d1242f%3B%0A%2D%2DfgColor%2Ddone%3A%20%238250df%3B%0A%2D%2DbgColor%2Ddefault%3A%20%23ffffff%3B%0A%2D%2DbgColor%2Dmuted%3A%20%23f6f8fa%3B%0A%2D%2DbgColor%2Dneutral%2Dmuted%3A%20%23818b981f%3B%0A%2D%2DbgColor%2Dattention%2Dmuted%3A%20%23fff8c5%3B%0A%2D%2DborderColor%2Ddefault%3A%20%23d1d9e0%3B%0A%2D%2DborderColor%2Dmuted%3A%20%23d1d9e0b3%3B%0A%2D%2DborderColor%2Dneutral%2Dmuted%3A%20%23d1d9e0b3%3B%0A%2D%2DborderColor%2Daccent%2Demphasis%3A%20%230969da%3B%0A%2D%2DborderColor%2Dsuccess%2Demphasis%3A%20%231a7f37%3B%0A%2D%2DborderColor%2Dattention%2Demphasis%3A%20%239a6700%3B%0A%2D%2DborderColor%2Ddanger%2Demphasis%3A%20%23cf222e%3B%0A%2D%2DborderColor%2Ddone%2Demphasis%3A%20%238250df%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcomment%3A%20%2359636e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%3A%20%230550ae%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%2Dother%2Dreference%2Dlink%3A%20%230a3069%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%3A%20%236639ba%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstorage%2Dmodifier%2Dimport%3A%20%231f2328%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%2Dtag%3A%20%230550ae%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dkeyword%3A%20%23cf222e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%3A%20%230a3069%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dvariable%3A%20%23953800%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dunmatched%3A%20%2382071e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dangle%3A%20%2359636e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dtext%3A%20%23f6f8fa%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dbg%3A%20%2382071e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dtext%3A%20%23f6f8fa%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dbg%3A%20%23cf222e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%2Dregexp%3A%20%23116329%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dlist%3A%20%233b2300%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dheading%3A%20%230550ae%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ditalic%3A%20%231f2328%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dbold%3A%20%231f2328%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dtext%3A%20%2382071e%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dbg%3A%20%23ffebe9%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dtext%3A%20%23116329%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dbg%3A%20%23dafbe1%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dtext%3A%20%23953800%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dbg%3A%20%23ffd8b5%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dtext%3A%20%23d1d9e0%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dbg%3A%20%230550ae%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmeta%2Ddiff%2Drange%3A%20%238250df%3B%0A%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dsublimelinter%2Dgutter%2Dmark%3A%20%23818b98%3B%0A%7D%0A%7D%0A%2Emarkdown%2Dbody%20%7B%0A%2Dms%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Amargin%3A%200%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Ddefault%29%3B%0Afont%2Dfamily%3A%20%2Dapple%2Dsystem%2CBlinkMacSystemFont%2C%22Segoe%20UI%22%2C%22Noto%20Sans%22%2CHelvetica%2CArial%2Csans%2Dserif%2C%22Apple%20Color%20Emoji%22%2C%22Segoe%20UI%20Emoji%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E5%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eocticon%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Afill%3A%20currentColor%3B%0Avertical%2Dalign%3A%20text%2Dbottom%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%2C%0A%2Emarkdown%2Dbody%20h2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%2C%0A%2Emarkdown%2Dbody%20h3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%2C%0A%2Emarkdown%2Dbody%20h4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%2C%0A%2Emarkdown%2Dbody%20h5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%2C%0A%2Emarkdown%2Dbody%20h6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%3Abefore%20%7B%0Awidth%3A%2016px%3B%0Aheight%3A%2016px%3B%0Acontent%3A%20%27%20%27%3B%0Adisplay%3A%20inline%2Dblock%3B%0Abackground%2Dcolor%3A%20currentColor%3B%0A%2Dwebkit%2Dmask%2Dimage%3A%20url%28%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww%2Ew3%2Eorg%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20version%3D%271%2E1%27%20aria%2Dhidden%3D%27true%27%3E%3Cpath%20fill%2Drule%3D%27evenodd%27%20d%3D%27M7%2E775%203%2E275a%2E75%2E75%200%20001%2E06%201%2E06l1%2E25%2D1%2E25a2%202%200%20112%2E83%202%2E83l%2D2%2E5%202%2E5a2%202%200%2001%2D2%2E83%200%20%2E75%2E75%200%2000%2D1%2E06%201%2E06%203%2E5%203%2E5%200%20004%2E95%200l2%2E5%2D2%2E5a3%2E5%203%2E5%200%2000%2D4%2E95%2D4%2E95l%2D1%2E25%201%2E25zm%2D4%2E69%209%2E64a2%202%200%20010%2D2%2E83l2%2E5%2D2%2E5a2%202%200%20012%2E83%200%20%2E75%2E75%200%20001%2E06%2D1%2E06%203%2E5%203%2E5%200%2000%2D4%2E95%200l%2D2%2E5%202%2E5a3%2E5%203%2E5%200%20004%2E95%204%2E95l1%2E25%2D1%2E25a%2E75%2E75%200%2000%2D1%2E06%2D1%2E06l%2D1%2E25%201%2E25a2%202%200%2001%2D2%2E83%200z%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E%22%29%3B%0Amask%2Dimage%3A%20url%28%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww%2Ew3%2Eorg%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20version%3D%271%2E1%27%20aria%2Dhidden%3D%27true%27%3E%3Cpath%20fill%2Drule%3D%27evenodd%27%20d%3D%27M7%2E775%203%2E275a%2E75%2E75%200%20001%2E06%201%2E06l1%2E25%2D1%2E25a2%202%200%20112%2E83%202%2E83l%2D2%2E5%202%2E5a2%202%200%2001%2D2%2E83%200%20%2E75%2E75%200%2000%2D1%2E06%201%2E06%203%2E5%203%2E5%200%20004%2E95%200l2%2E5%2D2%2E5a3%2E5%203%2E5%200%2000%2D4%2E95%2D4%2E95l%2D1%2E25%201%2E25zm%2D4%2E69%209%2E64a2%202%200%20010%2D2%2E83l2%2E5%2D2%2E5a2%202%200%20012%2E83%200%20%2E75%2E75%200%20001%2E06%2D1%2E06%203%2E5%203%2E5%200%2000%2D4%2E95%200l%2D2%2E5%202%2E5a3%2E5%203%2E5%200%20004%2E95%204%2E95l1%2E25%2D1%2E25a%2E75%2E75%200%2000%2D1%2E06%2D1%2E06l%2D1%2E25%201%2E25a2%202%200%2001%2D2%2E83%200z%27%3E%3C%2Fpath%3E%3C%2Fsvg%3E%22%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20details%2C%0A%2Emarkdown%2Dbody%20figcaption%2C%0A%2Emarkdown%2Dbody%20figure%20%7B%0Adisplay%3A%20block%3B%0A%7D%0A%2Emarkdown%2Dbody%20summary%20%7B%0Adisplay%3A%20list%2Ditem%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Bhidden%5D%20%7B%0Adisplay%3A%20none%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Daccent%29%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20abbr%5Btitle%5D%20%7B%0Aborder%2Dbottom%3A%20none%3B%0A%2Dwebkit%2Dtext%2Ddecoration%3A%20underline%20dotted%3B%0Atext%2Ddecoration%3A%20underline%20dotted%3B%0A%7D%0A%2Emarkdown%2Dbody%20b%2C%0A%2Emarkdown%2Dbody%20strong%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20dfn%20%7B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%20%7B%0Amargin%3A%20%2E67em%200%3B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Apadding%2Dbottom%3A%20%2E3em%3B%0Afont%2Dsize%3A%202em%3B%0Aborder%2Dbottom%3A%201px%20solid%20var%28%2D%2DborderColor%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20mark%20%7B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Dattention%2Dmuted%29%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20small%20%7B%0Afont%2Dsize%3A%2090%25%3B%0A%7D%0A%2Emarkdown%2Dbody%20sub%2C%0A%2Emarkdown%2Dbody%20sup%20%7B%0Afont%2Dsize%3A%2075%25%3B%0Aline%2Dheight%3A%200%3B%0Aposition%3A%20relative%3B%0Avertical%2Dalign%3A%20baseline%3B%0A%7D%0A%2Emarkdown%2Dbody%20sub%20%7B%0Abottom%3A%20%2D0%2E25em%3B%0A%7D%0A%2Emarkdown%2Dbody%20sup%20%7B%0Atop%3A%20%2D0%2E5em%3B%0A%7D%0A%2Emarkdown%2Dbody%20img%20%7B%0Aborder%2Dstyle%3A%20none%3B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0A%7D%0A%2Emarkdown%2Dbody%20code%2C%0A%2Emarkdown%2Dbody%20kbd%2C%0A%2Emarkdown%2Dbody%20pre%2C%0A%2Emarkdown%2Dbody%20samp%20%7B%0Afont%2Dfamily%3A%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0A%2Emarkdown%2Dbody%20figure%20%7B%0Amargin%3A%201em%20var%28%2D%2Dbase%2Dsize%2D40%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20hr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%2Dbottom%3A%201px%20solid%20var%28%2D%2DborderColor%2Dmuted%29%3B%0Aheight%3A%20%2E25em%3B%0Apadding%3A%200%3B%0Amargin%3A%20var%28%2D%2Dbase%2Dsize%2D24%29%200%3B%0Abackground%2Dcolor%3A%20var%28%2D%2DborderColor%2Ddefault%29%3B%0Aborder%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20input%20%7B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20visible%3B%0Afont%2Dfamily%3A%20inherit%3B%0Afont%2Dsize%3A%20inherit%3B%0Aline%2Dheight%3A%20inherit%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Btype%3Dbutton%5D%2C%0A%2Emarkdown%2Dbody%20%5Btype%3Dreset%5D%2C%0A%2Emarkdown%2Dbody%20%5Btype%3Dsubmit%5D%20%7B%0A%2Dwebkit%2Dappearance%3A%20button%3B%0Aappearance%3A%20button%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Btype%3Dcheckbox%5D%2C%0A%2Emarkdown%2Dbody%20%5Btype%3Dradio%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Btype%3Dnumber%5D%3A%3A%2Dwebkit%2Dinner%2Dspin%2Dbutton%2C%0A%2Emarkdown%2Dbody%20%5Btype%3Dnumber%5D%3A%3A%2Dwebkit%2Douter%2Dspin%2Dbutton%20%7B%0Aheight%3A%20auto%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Btype%3Dsearch%5D%3A%3A%2Dwebkit%2Dsearch%2Dcancel%2Dbutton%2C%0A%2Emarkdown%2Dbody%20%5Btype%3Dsearch%5D%3A%3A%2Dwebkit%2Dsearch%2Ddecoration%20%7B%0A%2Dwebkit%2Dappearance%3A%20none%3B%0Aappearance%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%3A%3A%2Dwebkit%2Dinput%2Dplaceholder%20%7B%0Acolor%3A%20inherit%3B%0Aopacity%3A%20%2E54%3B%0A%7D%0A%2Emarkdown%2Dbody%20%3A%3A%2Dwebkit%2Dfile%2Dupload%2Dbutton%20%7B%0A%2Dwebkit%2Dappearance%3A%20button%3B%0Aappearance%3A%20button%3B%0Afont%3A%20inherit%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Ahover%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0A%2Emarkdown%2Dbody%20%3A%3Aplaceholder%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Dmuted%29%3B%0Aopacity%3A%201%3B%0A%7D%0A%2Emarkdown%2Dbody%20hr%3A%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%20hr%3A%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20%7B%0Aborder%2Dspacing%3A%200%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Adisplay%3A%20block%3B%0Awidth%3A%20max%2Dcontent%3B%0Amax%2Dwidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dvariant%3A%20tabular%2Dnums%3B%0A%7D%0A%2Emarkdown%2Dbody%20td%2C%0A%2Emarkdown%2Dbody%20th%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20details%20summary%20%7B%0Acursor%3A%20pointer%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Afocus%2C%0A%2Emarkdown%2Dbody%20%5Brole%3Dbutton%5D%3Afocus%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dradio%5D%3Afocus%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dcheckbox%5D%3Afocus%20%7B%0Aoutline%3A%202px%20solid%20var%28%2D%2Dfocus%2DoutlineColor%29%3B%0Aoutline%2Doffset%3A%20%2D2px%3B%0Abox%2Dshadow%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20%5Brole%3Dbutton%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dradio%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dcheckbox%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%20%7B%0Aoutline%3A%20solid%201px%20transparent%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Afocus%2Dvisible%2C%0A%2Emarkdown%2Dbody%20%5Brole%3Dbutton%5D%3Afocus%2Dvisible%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dradio%5D%3Afocus%2Dvisible%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dcheckbox%5D%3Afocus%2Dvisible%20%7B%0Aoutline%3A%202px%20solid%20var%28%2D%2Dfocus%2DoutlineColor%29%3B%0Aoutline%2Doffset%3A%20%2D2px%3B%0Abox%2Dshadow%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Anot%28%5Bclass%5D%29%3Afocus%2C%0A%2Emarkdown%2Dbody%20a%3Anot%28%5Bclass%5D%29%3Afocus%2Dvisible%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dradio%5D%3Afocus%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dradio%5D%3Afocus%2Dvisible%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dcheckbox%5D%3Afocus%2C%0A%2Emarkdown%2Dbody%20input%5Btype%3Dcheckbox%5D%3Afocus%2Dvisible%20%7B%0Aoutline%2Doffset%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20kbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%20var%28%2D%2Dbase%2Dsize%2D4%29%3B%0Afont%3A%2011px%20var%28%2D%2DfontStack%2Dmonospace%2C%20ui%2Dmonospace%2C%20SFMono%2DRegular%2C%20SF%20Mono%2C%20Menlo%2C%20Consolas%2C%20Liberation%20Mono%2C%20monospace%29%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Dmuted%29%3B%0Aborder%3A%20solid%201px%20var%28%2D%2DborderColor%2Dneutral%2Dmuted%29%3B%0Aborder%2Dbottom%2Dcolor%3A%20var%28%2D%2DborderColor%2Dneutral%2Dmuted%29%3B%0Aborder%2Dradius%3A%206px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20var%28%2D%2DborderColor%2Dneutral%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%2C%0A%2Emarkdown%2Dbody%20h2%2C%0A%2Emarkdown%2Dbody%20h3%2C%0A%2Emarkdown%2Dbody%20h4%2C%0A%2Emarkdown%2Dbody%20h5%2C%0A%2Emarkdown%2Dbody%20h6%20%7B%0Amargin%2Dtop%3A%20var%28%2D%2Dbase%2Dsize%2D24%29%3B%0Amargin%2Dbottom%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Aline%2Dheight%3A%201%2E25%3B%0A%7D%0A%2Emarkdown%2Dbody%20h2%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Apadding%2Dbottom%3A%20%2E3em%3B%0Afont%2Dsize%3A%201%2E5em%3B%0Aborder%2Dbottom%3A%201px%20solid%20var%28%2D%2DborderColor%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20h3%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0A%2Emarkdown%2Dbody%20h4%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0A%2Emarkdown%2Dbody%20h5%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Afont%2Dsize%3A%20%2E875em%3B%0A%7D%0A%2Emarkdown%2Dbody%20h6%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Afont%2Dsize%3A%20%2E85em%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20p%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2010px%3B%0A%7D%0A%2Emarkdown%2Dbody%20blockquote%20%7B%0Amargin%3A%200%3B%0Apadding%3A%200%201em%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Dmuted%29%3B%0Aborder%2Dleft%3A%20%2E25em%20solid%20var%28%2D%2DborderColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20ul%2C%0A%2Emarkdown%2Dbody%20ol%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%20ol%2C%0A%2Emarkdown%2Dbody%20ul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0A%2Emarkdown%2Dbody%20ul%20ul%20ol%2C%0A%2Emarkdown%2Dbody%20ul%20ol%20ol%2C%0A%2Emarkdown%2Dbody%20ol%20ul%20ol%2C%0A%2Emarkdown%2Dbody%20ol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0A%2Emarkdown%2Dbody%20dd%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20tt%2C%0A%2Emarkdown%2Dbody%20code%2C%0A%2Emarkdown%2Dbody%20samp%20%7B%0Afont%2Dfamily%3A%20var%28%2D%2DfontStack%2Dmonospace%2C%20ui%2Dmonospace%2C%20SFMono%2DRegular%2C%20SF%20Mono%2C%20Menlo%2C%20Consolas%2C%20Liberation%20Mono%2C%20monospace%29%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0A%2Emarkdown%2Dbody%20pre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%2Dfamily%3A%20var%28%2D%2DfontStack%2Dmonospace%2C%20ui%2Dmonospace%2C%20SFMono%2DRegular%2C%20SF%20Mono%2C%20Menlo%2C%20Consolas%2C%20Liberation%20Mono%2C%20monospace%29%3B%0Afont%2Dsize%3A%2012px%3B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eocticon%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Aoverflow%3A%20visible%20%21important%3B%0Avertical%2Dalign%3A%20text%2Dbottom%3B%0Afill%3A%20currentColor%3B%0A%7D%0A%2Emarkdown%2Dbody%20input%3A%3A%2Dwebkit%2Douter%2Dspin%2Dbutton%2C%0A%2Emarkdown%2Dbody%20input%3A%3A%2Dwebkit%2Dinner%2Dspin%2Dbutton%20%7B%0Amargin%3A%200%3B%0Aappearance%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emr%2D2%20%7B%0Amargin%2Dright%3A%20var%28%2D%2Dbase%2Dsize%2D8%2C%208px%29%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3A%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3A%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%20a%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eabsent%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddanger%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eanchor%20%7B%0Afloat%3A%20left%3B%0Apadding%2Dright%3A%20var%28%2D%2Dbase%2Dsize%2D4%29%3B%0Amargin%2Dleft%3A%20%2D20px%3B%0Aline%2Dheight%3A%201%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20p%2C%0A%2Emarkdown%2Dbody%20blockquote%2C%0A%2Emarkdown%2Dbody%20ul%2C%0A%2Emarkdown%2Dbody%20ol%2C%0A%2Emarkdown%2Dbody%20dl%2C%0A%2Emarkdown%2Dbody%20table%2C%0A%2Emarkdown%2Dbody%20pre%2C%0A%2Emarkdown%2Dbody%20details%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20blockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20blockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h2%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h3%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h4%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h5%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%3Ahover%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20h2%3Ahover%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20h3%3Ahover%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20h4%3Ahover%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20h5%3Ahover%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20h6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0A%2Emarkdown%2Dbody%20h6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0A%2Emarkdown%2Dbody%20h1%20tt%2C%0A%2Emarkdown%2Dbody%20h1%20code%2C%0A%2Emarkdown%2Dbody%20h2%20tt%2C%0A%2Emarkdown%2Dbody%20h2%20code%2C%0A%2Emarkdown%2Dbody%20h3%20tt%2C%0A%2Emarkdown%2Dbody%20h3%20code%2C%0A%2Emarkdown%2Dbody%20h4%20tt%2C%0A%2Emarkdown%2Dbody%20h4%20code%2C%0A%2Emarkdown%2Dbody%20h5%20tt%2C%0A%2Emarkdown%2Dbody%20h5%20code%2C%0A%2Emarkdown%2Dbody%20h6%20tt%2C%0A%2Emarkdown%2Dbody%20h6%20code%20%7B%0Apadding%3A%200%20%2E2em%3B%0Afont%2Dsize%3A%20inherit%3B%0A%7D%0A%2Emarkdown%2Dbody%20summary%20h1%2C%0A%2Emarkdown%2Dbody%20summary%20h2%2C%0A%2Emarkdown%2Dbody%20summary%20h3%2C%0A%2Emarkdown%2Dbody%20summary%20h4%2C%0A%2Emarkdown%2Dbody%20summary%20h5%2C%0A%2Emarkdown%2Dbody%20summary%20h6%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0A%2Emarkdown%2Dbody%20summary%20h1%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20summary%20h2%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20summary%20h3%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20summary%20h4%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20summary%20h5%20%2Eanchor%2C%0A%2Emarkdown%2Dbody%20summary%20h6%20%2Eanchor%20%7B%0Amargin%2Dleft%3A%20%2D40px%3B%0A%7D%0A%2Emarkdown%2Dbody%20summary%20h1%2C%0A%2Emarkdown%2Dbody%20summary%20h2%20%7B%0Apadding%2Dbottom%3A%200%3B%0Aborder%2Dbottom%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20ul%2Eno%2Dlist%2C%0A%2Emarkdown%2Dbody%20ol%2Eno%2Dlist%20%7B%0Apadding%3A%200%3B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%5Btype%3D%22a%20s%22%5D%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%5Btype%3D%22A%20s%22%5D%20%7B%0Alist%2Dstyle%2Dtype%3A%20upper%2Dalpha%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%5Btype%3D%22i%20s%22%5D%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%5Btype%3D%22I%20s%22%5D%20%7B%0Alist%2Dstyle%2Dtype%3A%20upper%2Droman%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%5Btype%3D%221%22%5D%20%7B%0Alist%2Dstyle%2Dtype%3A%20decimal%3B%0A%7D%0A%2Emarkdown%2Dbody%20div%3Eol%3Anot%28%5Btype%5D%29%20%7B%0Alist%2Dstyle%2Dtype%3A%20decimal%3B%0A%7D%0A%2Emarkdown%2Dbody%20ul%20ul%2C%0A%2Emarkdown%2Dbody%20ul%20ol%2C%0A%2Emarkdown%2Dbody%20ol%20ol%2C%0A%2Emarkdown%2Dbody%20ol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20li%3Ep%20%7B%0Amargin%2Dtop%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20li%2Bli%20%7B%0Amargin%2Dtop%3A%20%2E25em%3B%0A%7D%0A%2Emarkdown%2Dbody%20dl%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20dl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20dl%20dd%20%7B%0Apadding%3A%200%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Amargin%2Dbottom%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20th%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20th%2C%0A%2Emarkdown%2Dbody%20table%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20var%28%2D%2DborderColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20td%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20tr%20%7B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Ddefault%29%3B%0Aborder%2Dtop%3A%201px%20solid%20var%28%2D%2DborderColor%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Dmuted%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20table%20img%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0A%2Emarkdown%2Dbody%20img%5Balign%3Dright%5D%20%7B%0Apadding%2Dleft%3A%2020px%3B%0A%7D%0A%2Emarkdown%2Dbody%20img%5Balign%3Dleft%5D%20%7B%0Apadding%2Dright%3A%2020px%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Eemoji%20%7B%0Amax%2Dwidth%3A%20none%3B%0Avertical%2Dalign%3A%20text%2Dtop%3B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Eframe%20%7B%0Adisplay%3A%20block%3B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Eframe%3Espan%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20left%3B%0Awidth%3A%20auto%3B%0Apadding%3A%207px%3B%0Amargin%3A%2013px%200%200%3B%0Aoverflow%3A%20hidden%3B%0Aborder%3A%201px%20solid%20var%28%2D%2DborderColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Eframe%20span%20img%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20left%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Eframe%20span%20span%20%7B%0Adisplay%3A%20block%3B%0Apadding%3A%205px%200%200%3B%0Aclear%3A%20both%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dcenter%20%7B%0Adisplay%3A%20block%3B%0Aoverflow%3A%20hidden%3B%0Aclear%3A%20both%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dcenter%3Espan%20%7B%0Adisplay%3A%20block%3B%0Amargin%3A%2013px%20auto%200%3B%0Aoverflow%3A%20hidden%3B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dcenter%20span%20img%20%7B%0Amargin%3A%200%20auto%3B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dright%20%7B%0Adisplay%3A%20block%3B%0Aoverflow%3A%20hidden%3B%0Aclear%3A%20both%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dright%3Espan%20%7B%0Adisplay%3A%20block%3B%0Amargin%3A%2013px%200%200%3B%0Aoverflow%3A%20hidden%3B%0Atext%2Dalign%3A%20right%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Ealign%2Dright%20span%20img%20%7B%0Amargin%3A%200%3B%0Atext%2Dalign%3A%20right%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Efloat%2Dleft%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20left%3B%0Amargin%2Dright%3A%2013px%3B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Efloat%2Dleft%20span%20%7B%0Amargin%3A%2013px%200%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Efloat%2Dright%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20right%3B%0Amargin%2Dleft%3A%2013px%3B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%2Emarkdown%2Dbody%20span%2Efloat%2Dright%3Espan%20%7B%0Adisplay%3A%20block%3B%0Amargin%3A%2013px%20auto%200%3B%0Aoverflow%3A%20hidden%3B%0Atext%2Dalign%3A%20right%3B%0A%7D%0A%2Emarkdown%2Dbody%20code%2C%0A%2Emarkdown%2Dbody%20tt%20%7B%0Apadding%3A%20%2E2em%20%2E4em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Awhite%2Dspace%3A%20break%2Dspaces%3B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Dneutral%2Dmuted%29%3B%0Aborder%2Dradius%3A%206px%3B%0A%7D%0A%2Emarkdown%2Dbody%20code%20br%2C%0A%2Emarkdown%2Dbody%20tt%20br%20%7B%0Adisplay%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20del%20code%20%7B%0Atext%2Ddecoration%3A%20inherit%3B%0A%7D%0A%2Emarkdown%2Dbody%20samp%20%7B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0A%2Emarkdown%2Dbody%20pre%20code%20%7B%0Afont%2Dsize%3A%20100%25%3B%0A%7D%0A%2Emarkdown%2Dbody%20pre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ehighlight%20pre%2C%0A%2Emarkdown%2Dbody%20pre%20%7B%0Apadding%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2DbgColor%2Dmuted%29%3B%0Aborder%2Dradius%3A%206px%3B%0A%7D%0A%2Emarkdown%2Dbody%20pre%20code%2C%0A%2Emarkdown%2Dbody%20pre%20tt%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20auto%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20visible%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ecsv%2Ddata%20td%2C%0A%2Emarkdown%2Dbody%20%2Ecsv%2Ddata%20th%20%7B%0Apadding%3A%205px%3B%0Aoverflow%3A%20hidden%3B%0Afont%2Dsize%3A%2012px%3B%0Aline%2Dheight%3A%201%3B%0Atext%2Dalign%3A%20left%3B%0Awhite%2Dspace%3A%20nowrap%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ecsv%2Ddata%20%2Eblob%2Dnum%20%7B%0Apadding%3A%2010px%20var%28%2D%2Dbase%2Dsize%2D8%29%209px%3B%0Atext%2Dalign%3A%20right%3B%0Abackground%3A%20var%28%2D%2DbgColor%2Ddefault%29%3B%0Aborder%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ecsv%2Ddata%20tr%20%7B%0Aborder%2Dtop%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ecsv%2Ddata%20th%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dsemibold%2C%20600%29%3B%0Abackground%3A%20var%28%2D%2DbgColor%2Dmuted%29%3B%0Aborder%2Dtop%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Bdata%2Dfootnote%2Dref%5D%3A%3Abefore%20%7B%0Acontent%3A%20%22%5B%22%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Bdata%2Dfootnote%2Dref%5D%3A%3Aafter%20%7B%0Acontent%3A%20%22%5D%22%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20%7B%0Afont%2Dsize%3A%2012px%3B%0Acolor%3A%20var%28%2D%2DfgColor%2Dmuted%29%3B%0Aborder%2Dtop%3A%201px%20solid%20var%28%2D%2DborderColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20ol%20%7B%0Apadding%2Dleft%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20ol%20ul%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dleft%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Amargin%2Dtop%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20li%20%7B%0Aposition%3A%20relative%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20li%3Atarget%3A%3Abefore%20%7B%0Aposition%3A%20absolute%3B%0Atop%3A%20calc%28var%28%2D%2Dbase%2Dsize%2D8%29%2A%2D1%29%3B%0Aright%3A%20calc%28var%28%2D%2Dbase%2Dsize%2D8%29%2A%2D1%29%3B%0Abottom%3A%20calc%28var%28%2D%2Dbase%2Dsize%2D8%29%2A%2D1%29%3B%0Aleft%3A%20calc%28var%28%2D%2Dbase%2Dsize%2D24%29%2A%2D1%29%3B%0Apointer%2Devents%3A%20none%3B%0Acontent%3A%20%22%22%3B%0Aborder%3A%202px%20solid%20var%28%2D%2DborderColor%2Daccent%2Demphasis%29%3B%0Aborder%2Dradius%3A%206px%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20li%3Atarget%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Efootnotes%20%2Edata%2Dfootnote%2Dbackref%20g%2Demoji%20%7B%0Afont%2Dfamily%3A%20monospace%3B%0A%7D%0A%2Emarkdown%2Dbody%20body%3Ahas%28%3Amodal%29%20%7B%0Apadding%2Dright%3A%20var%28%2D%2Ddialog%2Dscrollgutter%29%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dc%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcomment%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dc1%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2De%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Den%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dsmi%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Ds%20%2Epl%2Ds1%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstorage%2Dmodifier%2Dimport%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dent%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dentity%2Dtag%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dk%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dkeyword%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Ds%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dpds%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dsr%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dsr%20%2Epl%2Dsre%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dsr%20%2Epl%2Dsra%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dv%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dsmw%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dvariable%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dbu%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dunmatched%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dii%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dinvalid%2Dillegal%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dc2%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dcarriage%2Dreturn%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Afont%2Dweight%3A%20bold%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dstring%2Dregexp%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dml%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dlist%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmh%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Emarkdown%2Dbody%20%2Epl%2Dms%20%7B%0Afont%2Dweight%3A%20bold%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dheading%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmi%20%7B%0Afont%2Dstyle%3A%20italic%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ditalic%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmb%20%7B%0Afont%2Dweight%3A%20bold%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dbold%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmd%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Ddeleted%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmi1%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dinserted%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmc%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dchanged%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmi2%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dtext%29%3B%0Abackground%2Dcolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmarkup%2Dignored%2Dbg%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dmdr%20%7B%0Afont%2Dweight%3A%20bold%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dmeta%2Ddiff%2Drange%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dba%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dbrackethighlighter%2Dangle%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dsg%20%7B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dsublimelinter%2Dgutter%2Dmark%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Epl%2Dcorl%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0Acolor%3A%20var%28%2D%2Dcolor%2Dprettylights%2Dsyntax%2Dconstant%2Dother%2Dreference%2Dlink%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Brole%3Dbutton%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20%5Brole%3Dtabpanel%5D%5Btabindex%3D%220%22%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20button%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20summary%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20a%3Afocus%3Anot%28%3Afocus%2Dvisible%29%20%7B%0Aoutline%3A%20none%3B%0Abox%2Dshadow%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%5Btabindex%3D%220%22%5D%3Afocus%3Anot%28%3Afocus%2Dvisible%29%2C%0A%2Emarkdown%2Dbody%20details%2Ddialog%3Afocus%3Anot%28%3Afocus%2Dvisible%29%20%7B%0Aoutline%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20g%2Demoji%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Amin%2Dwidth%3A%201ch%3B%0Afont%2Dfamily%3A%20%22Apple%20Color%20Emoji%22%2C%22Segoe%20UI%20Emoji%22%2C%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20normal%20%21important%3B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dnormal%2C%20400%29%3B%0Aline%2Dheight%3A%201%3B%0Avertical%2Dalign%3A%20%2D0%2E075em%3B%0A%7D%0A%2Emarkdown%2Dbody%20g%2Demoji%20img%20%7B%0Awidth%3A%201em%3B%0Aheight%3A%201em%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%20label%20%7B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dnormal%2C%20400%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%2Eenabled%20label%20%7B%0Acursor%3A%20pointer%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%20var%28%2D%2Dbase%2Dsize%2D4%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%20%2Ehandle%20%7B%0Adisplay%3A%20none%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Etask%2Dlist%2Ditem%2Dcheckbox%20%7B%0Amargin%3A%200%20%2E2em%20%2E25em%20%2D1%2E4em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%2Emarkdown%2Dbody%20ul%3Adir%28rtl%29%20%2Etask%2Dlist%2Ditem%2Dcheckbox%20%7B%0Amargin%3A%200%20%2D1%2E6em%20%2E25em%20%2E2em%3B%0A%7D%0A%2Emarkdown%2Dbody%20ol%3Adir%28rtl%29%20%2Etask%2Dlist%2Ditem%2Dcheckbox%20%7B%0Amargin%3A%200%20%2D1%2E6em%20%2E25em%20%2E2em%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Econtains%2Dtask%2Dlist%3Ahover%20%2Etask%2Dlist%2Ditem%2Dconvert%2Dcontainer%2C%0A%2Emarkdown%2Dbody%20%2Econtains%2Dtask%2Dlist%3Afocus%2Dwithin%20%2Etask%2Dlist%2Ditem%2Dconvert%2Dcontainer%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20auto%3B%0Aheight%3A%2024px%3B%0Aoverflow%3A%20visible%3B%0Aclip%3A%20auto%3B%0A%7D%0A%2Emarkdown%2Dbody%20%3A%3A%2Dwebkit%2Dcalendar%2Dpicker%2Dindicator%20%7B%0Afilter%3A%20invert%2850%25%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%20%7B%0Apadding%3A%20var%28%2D%2Dbase%2Dsize%2D8%29%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Amargin%2Dbottom%3A%20var%28%2D%2Dbase%2Dsize%2D16%29%3B%0Acolor%3A%20inherit%3B%0Aborder%2Dleft%3A%20%2E25em%20solid%20var%28%2D%2DborderColor%2Ddefault%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Adisplay%3A%20flex%3B%0Afont%2Dweight%3A%20var%28%2D%2Dbase%2Dtext%2Dweight%2Dmedium%2C%20500%29%3B%0Aalign%2Ditems%3A%20center%3B%0Aline%2Dheight%3A%201%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dnote%20%7B%0Aborder%2Dleft%2Dcolor%3A%20var%28%2D%2DborderColor%2Daccent%2Demphasis%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dnote%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Daccent%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dimportant%20%7B%0Aborder%2Dleft%2Dcolor%3A%20var%28%2D%2DborderColor%2Ddone%2Demphasis%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dimportant%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddone%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dwarning%20%7B%0Aborder%2Dleft%2Dcolor%3A%20var%28%2D%2DborderColor%2Dattention%2Demphasis%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dwarning%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Dattention%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dtip%20%7B%0Aborder%2Dleft%2Dcolor%3A%20var%28%2D%2DborderColor%2Dsuccess%2Demphasis%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dtip%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Dsuccess%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dcaution%20%7B%0Aborder%2Dleft%2Dcolor%3A%20var%28%2D%2DborderColor%2Ddanger%2Demphasis%29%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Emarkdown%2Dalert%2Emarkdown%2Dalert%2Dcaution%20%2Emarkdown%2Dalert%2Dtitle%20%7B%0Acolor%3A%20var%28%2D%2DfgColor%2Ddanger%29%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%3E%2Eheading%2Delement%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%20%2Ehighlight%20pre%3Ahas%28%2B%2Ezeroclipboard%2Dcontainer%29%20%7B%0Amin%2Dheight%3A%2052px%3B%0A%7D%0A" rel="stylesheet" />
+<style>
+body {
+margin: 0;
+}
+.markdown-body {
+box-sizing: border-box;
+min-width: 200px;
+max-width: 980px;
+margin: 0 auto;
+padding: 45px;
+border-color: #d1d9e0;
+border-style: none solid;
+border-width: 0.0625rem;
+}
+@media (max-width: 767px) {
+.markdown-body {
+padding: 15px;
+}
+}
+.markdown-body figure {
+padding: 2em;
+margin: 0;
+}
+.markdown-body figure figcaption {
+padding-top: 20px;
+text-align: center;
+}
+.markdown-body table caption {
+padding: 20px;
+}
+#refs {
+display: table;
+}
+#refs .csl-entry {
+display: table-row;
+}
+#refs .csl-left-margin {
+display: table-cell;
+padding-right: 8px;
+text-align: right;
+vertical-align: top;
+}
+#refs .csl-right-inline {
+display: table-cell;
+vertical-align: top;
+}
+</style>
+</head>
+<body>
+<div class="markdown-body">
+<div align="center">
+<img role="img" aria-label="Logo" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMTUuMDEgMTI4LjEyIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzVmNjA2Mn08L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03ODkuNTEgMjM5Ljg2YzAtNi45IDIuNS0xMC42IDkuNzQtMTAuNmgxNC4yMmM3LjE2IDAgOS43NSAzLjcgOS43NSAxMC42djEyLjc2YzAgNi44OS0yLjUgMTAuNi05Ljc1IDEwLjZoLTE0LjIyYy03LjI0IDAtOS43NC0zLjcxLTkuNzQtMTAuNnptMjIuMjQgMTUuNjFjMiAwIDMuNDUtLjQ0IDMuNDUtMi42N3YtMTMuMTFjMC0yLjI0LTEuNDYtMi42Ny0zLjQ1LTIuNjdoLTEwLjY4Yy0yIDAtMy40NS40My0zLjQ1IDIuNjd2MTMuMTFjMCAyLjIzIDEuNDYgMi42NyAzLjQ1IDIuNjd6TTgzNyAyMzAuOWExLjczIDEuNzMgMCAwMTEuODEtMS42NGgyMS43MmM3LjI1IDAgOS43NCAzLjcgOS43NCAxMC42IDAgNi42NC0yLjg0IDEwLjI2LTkuNzQgMTAuMjZIODQ1djExLjI5YTEuOCAxLjggMCAwMS0xLjcyIDEuODFoLTQuNTdhMS44IDEuOCAwIDAxLTEuNzItMS44MXptMjEuNTUgMTEuNDZjMi4wNyAwIDMuNy0uMzQgMy43LTIuNjdzLTEuNTUtMi42Ny0zLjUzLTIuNjdIODQ1djUuMzR6bTIzLjE0LTExLjQ2YTEuNzQgMS43NCAwIDAxMS44MS0xLjY0aDI3LjI1YTEuNzMgMS43MyAwIDAxMS44MSAxLjY0djQuMzlhMS44MSAxLjgxIDAgMDEtMS44MSAxLjczaC0yMXY1LjM0aDEzLjU0YTEuODEgMS44MSAwIDAxMS44MSAxLjcydjQuNGExLjczIDEuNzMgMCAwMS0xLjgxIDEuNjRoLTEzLjU4djUuMzVoMjAuOTVhMS44MSAxLjgxIDAgMDExLjgyIDEuNzJ2NC4zOWExLjc0IDEuNzQgMCAwMS0xLjgyIDEuNjRoLTI3LjI0YTEuODEgMS44MSAwIDAxLTEuNzMtMS44MXptNDQuMDggMGExLjczIDEuNzMgMCAwMTEuOC0xLjY0aDIyLjE3YzcuMjQgMCA5Ljc0IDMuNyA5Ljc0IDEwLjZ2MjEuNTVhMS44MiAxLjgyIDAgMDEtMS44MSAxLjgxaC00LjQ4YTEuNzUgMS43NSAwIDAxLTEuNzMtMS44MXYtMjEuNzJjMC0yLjI0LTEuNTUtMi42Ny0zLjQ1LTIuNjdoLTE0LjIydjI0LjM5YTEuODEgMS44MSAwIDAxLTEuNzMgMS44MWgtNC41N2ExLjggMS44IDAgMDEtMS43Mi0xLjgxeiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTY0NC40NyAtMTg1Ljk0KSIvPjxwYXRoIGQ9Ik0xMDYuMjUgNjUuMDN2LTEuODVsLTEuNjIgMS43NVY2MC44aC0xLjIydjQuMTFsLTEuNi0xLjczdjEuODVsMi4yMiAyLjQgMi4yMi0yLjR6TTkzLjIxIDk0LjU5bDEuMzEtMS4zMS0yLjM4LjA4IDIuOTItMi45MS0uODctLjg3LTIuOSAyLjkuMDgtMi4zNi0xLjMxIDEuMzItLjEyIDMuMjcgMy4yNy0uMTJ6bS0zMC4xMyAxMS42N2gxLjg2bC0xLjc1LTEuNjJoNC4xM3YtMS4yM2gtNC4xMWwxLjczLTEuNmgtMS44NmwtMi4zOSAyLjIzIDIuMzkgMi4yMnpNMzMuNTMgOTMuMjFsMS4zMSAxLjMxLS4wOS0yLjM4IDIuOTIgMi45Mi44Ni0uODctMi44OS0yLjkgMi4zNS4wOC0xLjMxLTEuMzEtMy4yNy0uMTIuMTIgMy4yN3pNMjEuODYgNjMuMDl2MS44NWwxLjYyLTEuNzV2NC4xM2gxLjIzdi00LjFsMS42IDEuNzJ2LTEuODVsLTIuMjMtMi40LTIuMjIgMi40em0xMy4wNS0yOS41NmwtMS4zMiAxLjMxIDIuMzktLjA4LTIuOTIgMi45MS44Ny44NyAyLjktMi45LS4wOSAyLjM2IDEuMzEtMS4zMi4xMi0zLjI3LTMuMjYuMTJ6bTMwLjEyLTExLjY3aC0xLjg1bDEuNzUgMS42M0g2MC44djEuMjJoNC4xbC0xLjcyIDEuNmgxLjg1bDIuNC0yLjIyLTIuNC0yLjIzem0yOS41NiAxMy4wNWwtMS4zMi0xLjMxLjA5IDIuMzgtMi45Mi0yLjkyLS44Ni44NyAyLjkgMi45LTIuMzYtLjA4IDEuMzIgMS4zMSAzLjI3LjEyLS4xMi0zLjI3em0xMC40OCAxOS4xN2wtLjQ4LTEuNzktMS4xMiAyLjExLTEuMDYtMy45OS0xLjE5LjMyIDEuMDcgMy45Ny0yLTEuMjYuNDggMS43OSAyLjc3IDEuNzUgMS41My0yLjl6TTEwMC4xMiA4NmwuOTItMS42LTIuMjguNyAyLjA3LTMuNTctMS4wNi0uNjEtMi4wNiAzLjU1LS41Mi0yLjMtLjkzIDEuNjEuNzMgMy4xOSAzLjEzLS45N3ptLTI2LjA4IDE5LjA3bDEuNzktLjQ3LTIuMTEtMS4xMiAzLjk5LTEuMDctLjMyLTEuMTgtMy45NyAxLjA2IDEuMjYtMi0xLjc5LjQ4LTEuNzQgMi43OCAyLjg5IDEuNTJ6bS0zMS45My00Ljk1bDEuNjEuOTItLjctMi4yNyAzLjU3IDIuMDYuNjEtMS4wNi0zLjU1LTIuMDUgMi4zLS41My0xLjYxLS45My0zLjE5LjczLjk2IDMuMTN6TTIzLjA0IDc0LjA0bC40OCAxLjc5IDEuMTItMi4xMSAxLjA2IDMuOTkgMS4xOS0uMzItMS4wNi0zLjk2IDEuOTkgMS4yNS0uNDgtMS43OS0yLjc3LTEuNzQtMS41MyAyLjg5ek0yOCA0Mi4xMmwtLjkzIDEuNjEgMi4yOC0uNzEtMi4wNiAzLjU4IDEuMDYuNiAyLjA1LTMuNTQuNTMgMi4yOS45Mi0xLjYxLS43Mi0zLjE5LTMuMTMuOTd6bTI2LjA4LTE5LjA3bC0xLjguNDggMi4xMSAxLjExLTMuOTggMS4wNy4zMiAxLjE4IDMuOTYtMS4wNi0xLjI1IDIgMS43OS0uNDggMS43NC0yLjc3LTIuODktMS41M3pNODYgMjhsLTEuNjEtLjkzLjcxIDIuMjktMy41OC0yLjA3LS42IDEuMDYgMy41NCAyLjA2LTIuMjkuNTIgMS42LjkzIDMuMTktLjczTDg2IDI4em0xNS4wOSAxNS44bC0uOTMtMS42LS41MyAyLjMyLTIuMDYtMy41Ny0xLjA2LjYxIDIuMDUgMy41Ni0yLjI1LS42OS45MiAxLjYgMy4xMy45Ny43My0zLjJ6bTMuNDggMzIuMTNsLjQ4LTEuOC0yLjAyIDEuMjcgMS4wNi0zLjk4LTEuMTgtLjMyLTEuMDYgMy45Ni0xLjExLTIuMDgtLjQ3IDEuOCAxLjUzIDIuODggMi43Ny0xLjczem0tMjAuMjYgMjUuMTZsMS42MS0uOTMtMi4zMy0uNTIgMy41OC0yLjA3LS42MS0xLjA1TDgzIDk4LjU2bC42OS0yLjI1LTEuNi45My0uOTcgMy4xMiAzLjE5Ljczem0tMzIuMTIgMy40OWwxLjc5LjQ3LTEuMjYtMi4wMiAzLjk4IDEuMDcuMzItMS4xOC0zLjk2LTEuMDcgMi4wOC0xLjEtMS43OS0uNDgtMi45IDEuNTMgMS43NCAyLjc4ek0yNy4wMiA4NC4zMmwuOTMgMS42LjUzLTIuMzIgMi4wNiAzLjU3IDEuMDctLjYxLTIuMDYtMy41NSAyLjI2LjY5LS45My0xLjYxLTMuMTMtLjk2LS43MyAzLjE5ek0yMy41NSA1Mi4ybC0uNDggMS43OSAyLjAyLTEuMjctMS4wNyAzLjk5IDEuMTguMzEgMS4wNy0zLjk2IDEuMSAyLjA4LjQ3LTEuNzktMS41Mi0yLjg5LTIuNzcgMS43NHpNNDMuOCAyNy4wM2wtMS42LjkzIDIuMzIuNTMtMy41NyAyLjA2LjYxIDEuMDYgMy41NS0yLjA1LS42OSAyLjI2IDEuNjEtLjkzLjk2LTMuMTMtMy4xOS0uNzN6bTc3LjkgNDAuNDZoMi44MWwtMi42NS0yLjQ2aDYuMjV2LTEuODVoLTYuMjJsMi42Mi0yLjQ0aC0yLjgxbC0zLjY0IDMuMzcgMy42NCAzLjM4em0tMTkuMzEgMzkuNzVsMS45OSAxLjk5LS4xMy0zLjYyIDQuNDIgNC40MyAxLjMxLTEuMzEtNC40LTQuNCAzLjU3LjEzLTEuOTktMS45OS00Ljk2LS4xOC4xOSA0Ljk1em0tNDEuNzYgMTQuNDV2Mi44MmwyLjQ2LTIuNjV2Ni4yNmgxLjg1di02LjIzbDIuNDQgMi42MnYtMi44Mkw2NCAxMTguMDZsLTMuMzcgMy42M3ptLTM5Ljc1LTE5LjNsLTEuOTkgMS45OSAzLjYxLS4xMy00LjQyIDQuNDIgMS4zMSAxLjMxIDQuNC00LjQtLjEzIDMuNTcgMS45OS0xLjk4LjE4LTQuOTctNC45NS4xOXpNNi40MiA2MC42M0gzLjZsMi42NSAyLjQ2SDB2MS44NWg2LjIyTDMuNiA2Ny4zOGgyLjgyTDEwLjA1IDY0bC0zLjYzLTMuMzd6bTE5LjMxLTM5Ljc1bC0xLjk5LTEuOTkuMTMgMy42MS00LjQyLTQuNDItMS4zMSAxLjMxIDQuNCA0LjQtMy41OC0uMTMgMS45OSAxLjk5IDQuOTYuMTgtLjE4LTQuOTV6TTY3LjQ5IDYuNDJWMy42MWwtMi40NiAyLjY1VjBoLTEuODZ2Ni4yM2wtMi40My0yLjYydjIuODFsMy4zOCAzLjYzIDMuMzctMy42M3ptMzkuNzUgMTkuMzFsMS45OS0yLTMuNjEuMTQgNC40Mi00LjQyLTEuMzItMS4zMS00LjQgNC40LjEzLTMuNTgtMS45OCAxLjk5LS4xOCA0Ljk2IDQuOTUtLjE4em0xMy4zOCAyNi43MmwyLjcyLS43Mi0zLjE5LTEuNjkgNi4wMy0xLjYzLS40OC0xLjc4LTYuMDEgMS42MSAxLjktMy4wMy0yLjcxLjczLTIuNjQgNC4yIDQuMzggMi4zMXptLTguMzYgNDMuNGwyLjQ0IDEuNDEtMS4wNi0zLjQ2IDUuNDEgMy4xMy45Mi0xLjYxLTUuMzgtMy4xMSAzLjQ4LS44LTIuNDQtMS40MS00LjgzIDEuMTEgMS40NiA0Ljc0em0tMzYuNiAyNC43N2wuNzMgMi43MiAxLjY5LTMuMTkgMS42MiA2LjA0IDEuNzktLjQ4LTEuNjEtNi4wMiAzLjAzIDEuOS0uNzItMi43MS00LjIxLTIuNjQtMi4zMiA0LjM4em0tNDMuMzktOC4zNmwtMS40MSAyLjQzIDMuNDUtMS4wNi0zLjEyIDUuNDIgMS42LjkzIDMuMTItNS4zOS44IDMuNDggMS40LTIuNDMtMS4xLTQuODQtNC43NCAxLjQ2ek03LjQ5IDc1LjY2bC0yLjcxLjczIDMuMTkgMS42OS02LjA0IDEuNjIuNDggMS43OSA2LjAyLTEuNjEtMS45MSAzLjAzIDIuNzItLjcyIDIuNjQtNC4yMS00LjM5LTIuMzJ6bTguMzYtNDMuMzlsLTIuNDMtMS40MSAxLjA2IDMuNDUtNS40MS0zLjEyLS45MyAxLjYxIDUuMzkgMy4xMS0zLjQ4LjggMi40MyAxLjQxIDQuODMtMS4xMS0xLjQ2LTQuNzR6bTM2LjYtMjQuNzhsLS43My0yLjcxLTEuNjkgMy4xOS0xLjYxLTYuMDQtMS44LjQ5IDEuNjEgNi4wMS0zLjAzLTEuOS43MyAyLjcxIDQuMiAyLjY0IDIuMzItNC4zOXptNDMuNCA4LjM3bDEuNDEtMi40NC0zLjQ2IDEuMDcgMy4xMy01LjQyLTEuNjEtLjkzLTMuMTEgNS4zOS0uOC0zLjQ5TDkwIDEyLjQ4bDEuMTEgNC44NCA0Ljc0LTEuNDZ6bTE5Ljg0IDIyLjM1bDIuNDQtMS40MS0zLjUyLS44IDUuNDEtMy4xMy0uOTMtMS42MS01LjM5IDMuMTIgMS4wNS0zLjQyLTIuNDQgMS40LTEuNDUgNC43NCA0LjgzIDEuMTF6bTMuMTUgNDQuMDhsMi43Mi43My0xLjkyLTMuMDYgNi4wNCAxLjYxLjQ4LTEuNzktNi4wMS0xLjYxIDMuMTYtMS42Ny0yLjcyLS43My00LjM4IDIuMzIgMi42MyA0LjJ6bS0yOC45MyAzMy40bDEuNCAyLjQ0LjgxLTMuNTMgMy4xMyA1LjQyIDEuNi0uOTMtMy4xMS01LjM5IDMuNDIgMS4wNS0xLjQxLTIuNDQtNC43NC0xLjQ1LTEuMSA0Ljgzem0tNDQuMDggMy4xNWwtLjczIDIuNzIgMy4wNi0xLjkxLTEuNjIgNi4wMyAxLjc5LjQ4IDEuNjEtNi4wMSAxLjY4IDMuMTYuNzMtMi43MS0yLjMzLTQuMzktNC4xOSAyLjYzem0tMzMuNC0yOC45M2wtMi40NCAxLjQxIDMuNTIuODEtNS40MSAzLjEyLjkyIDEuNiA1LjM5LTMuMTEtMS4wNSAzLjQxIDIuNDQtMS4zOSAxLjQ2LTQuNzUtNC44My0xLjF6TTkuMjcgNDUuODJsLTIuNzItLjcyIDEuOTIgMy4wNi02LjAzLTEuNjItLjQ4IDEuOCA2LjAxIDEuNjEtMy4xNyAxLjY3IDIuNzIuNzMgNC4zOC0yLjMyLTIuNjMtNC4yMXptMjguOTQtMzMuMzlMMzYuOCA5Ljk5bC0uODEgMy41Mi0zLjEyLTUuNDEtMS42MS45MyAzLjEyIDUuMzktMy40My0xLjA1IDEuNDEgMi40MyA0Ljc0IDEuNDYgMS4xMS00Ljgzem00NC4wOC0zLjE2bC43My0yLjcxLTMuMDYgMS45MiAxLjYyLTYuMDUtMS44LS40Ny0xLjYxIDYuMDEtMS42OC0zLjE2LS43MiAyLjcxIDIuMzIgNC4zOSA0LjItMi42NHptMTMuMTUgNDguOTJsLTEuNDcuMTkgMS41NiAxLjExLTMuMjguNDMuMTMuOTcgMy4yNi0uNDMtMS4yMSAxLjQ1IDEuNDgtLjE5IDEuNjctMi4wMS0yLjE0LTEuNTJ6bTE0LjIzLTEuMjNsLjMgMi4yOSAxLjcyLTIuNDMuNjggNS4xMiAxLjUyLS4yLS42Ny01LjA5IDIuMjcgMS44OC0uMy0yLjMtMy4xNi0yLjYxLTIuMzYgMy4zNHpNOTAuNCA4Mi4xbC0xLjE4LS45MS4zMiAxLjg5LTIuNjItMi4wMS0uNi43OCAyLjYxIDItMS44OC4xOCAxLjE4LjkgMi42MS0uMjUtLjQ0LTIuNTh6bTEwLjkzIDkuMTlsLTEuNDEgMS44MyAyLjk0LS40OS0zLjE0IDQuMDkgMS4yMS45MyAzLjEzLTQuMDcuMjggMi45NCAxLjQxLTEuODQtLjM5LTQuMDctNC4wMy42OHptLTMxLjQgNC4xNmwtLjItMS40OC0xLjEgMS41Ni0uNDMtMy4yOC0uOTcuMTMuNDMgMy4yNi0xLjQ2LTEuMi4yIDEuNDcgMi4wMSAxLjY2IDEuNTItMi4xMnptMS4yMyAxNC4yMmwtMi4zLjMgMi40NCAxLjcyLTUuMTIuNjguMiAxLjUxIDUuMDktLjY2LTEuODggMi4yNyAyLjMtLjMxIDIuNjEtMy4xNC0zLjM0LTIuMzd6TTQ2LjAyIDkwLjRsLjktMS4xOC0xLjg4LjMzIDIuMDEtMi42Mi0uNzgtLjYtMiAyLjYxLS4xOC0xLjg4LS45IDEuMTcuMjUgMi42MSAyLjU4LS40NHptLTkuMTkgMTAuOTRsLTEuODQtMS40Mi41IDIuOTQtNC4wOS0zLjE0LS45MyAxLjIyIDQuMDcgMy4xMi0yLjk0LjI4IDEuODQgMS40MSA0LjA4LS4zOC0uNjktNC4wM3ptLTQuMTUtMzEuNGwxLjQ3LS4yLTEuNTYtMS4xIDMuMjctLjQ0LS4xMy0uOTctMy4yNS40MyAxLjItMS40NS0xLjQ3LjE5LTEuNjcgMi4wMiAyLjE0IDEuNTJ6bS0xNC4yMyAxLjIzbC0uMy0yLjMtMS43MyAyLjQzLS42OC01LjExLTEuNTEuMi42NyA1LjA4LTIuMjctMS44OC4zIDIuMyAzLjE1IDIuNjIgMi4zNy0zLjM0em0xOS4yNi0yNS4xNWwxLjE4LjktLjMyLTEuODcgMi42MiAyIC42LS43OC0yLjYxLTIgMS44OC0uMTctMS4xOC0uOS0yLjYuMjQuNDMgMi41OHptLTEwLjkzLTkuMTlsMS40Mi0xLjg0LTIuOTUuNTEgMy4xNC00LjEtMS4yMS0uOTItMy4xMiA0LjA3LS4yOC0yLjk1LTEuNDEgMS44NS4zOCA0LjA3IDQuMDMtLjY5em0zMS40LTQuMTVsLjIgMS40NyAxLjEtMS41Ni40NCAzLjI3Ljk3LS4xMi0uNDMtMy4yNiAxLjQ1IDEuMi0uMTktMS40Ny0yLjAyLTEuNjYtMS41MiAyLjEzem0tMS4yMy0xNC4yM2wyLjMtLjMtMi40My0xLjczIDUuMTEtLjY3LS4yLTEuNTEtNS4wOC42NiAxLjg4LTIuMjctMi4zLjMxLTIuNjEgMy4xNCAzLjMzIDIuMzd6TTgyLjEgMzcuNzJsLS45MSAxLjE4IDEuODgtLjMyLTIgMi42MS43Ny42IDIuMDEtMi42LjE3IDEuODcuOS0xLjE4LS4yNC0yLjYtMi41OC40NHptOS4xOS0xMC45M2wxLjgzIDEuNDEtLjUtMi45NCA0LjEgMy4xNC45Mi0xLjIxLTQuMDctMy4xMyAyLjk1LS4yOC0xLjg1LTEuNC00LjA3LjM3LjY5IDQuMDR6bTEuNTYgMjMuNDhsLTEuMzcuNTYgMS43OS42Ni0zLjA1IDEuMjcuMzcuOTEgMy4wNC0xLjI2LS43OSAxLjcyIDEuMzctLjU3IDEuMS0yLjM4LTIuNDYtLjkxem0xMy40My00Ljg3bC44OCAyLjE0IDEuMDQtMi44IDEuOTcgNC43NiAxLjQxLS41OC0xLjk2LTQuNzQgMi42OCAxLjIyLS44OC0yLjE0LTMuNzItMS43LTEuNDIgMy44NHpNOTQuMTcgNzQuNjdsLTEuMzctLjU3Ljc5IDEuNzMtMy4wNS0xLjI2LS4zNy45MSAzLjA0IDEuMjUtMS43Ny42NiAxLjM3LjU3IDIuNDYtLjkxLTEuMS0yLjM4em0xMi45NCA2LjA0bC0uODkgMi4xNCAyLjcxLTEuMjQtMS45NyA0Ljc3IDEuNDEuNTggMS45Ni00Ljc0IDEuMDMgMi43Ni44OS0yLjEzLTEuNDItMy44NC0zLjcyIDEuN3pNNzcuODUgOTIuODZsLS41Ny0xLjM4LS42NiAxLjc5LTEuMjYtMy4wNS0uOTEuMzggMS4yNiAzLjAzLTEuNzItLjc4LjU3IDEuMzcgMi4zOCAxLjA5LjkxLTIuNDV6bTQuODcgMTMuNDJsLTIuMTQuODggMi44IDEuMDQtNC43NyAxLjk3LjU4IDEuNDIgNC43NS0xLjk3LTEuMjMgMi42OSAyLjE0LS44OSAxLjcxLTMuNzItMy44NC0xLjQyek01My40NSA5NC4xN2wuNTctMS4zNy0xLjc0LjggMS4yNy0zLjA1LS45MS0uMzctMS4yNiAzLjAzLS42NS0xLjc3LS41NyAxLjM3LjkxIDIuNDUgMi4zOC0xLjA5em0tNi4wNSAxMi45NGwtMi4xMy0uODkgMS4yNCAyLjcyLTQuNzctMS45OC0uNTggMS40MiA0Ljc0IDEuOTYtMi43NyAxLjAyIDIuMTQuODkgMy44NC0xLjQyLTEuNzEtMy43MnpNMzUuMjYgNzcuODVsMS4zOC0uNTctMS43OS0uNjYgMy4wNC0xLjI2LS4zNy0uOTEtMy4wMyAxLjI2Ljc4LTEuNzEtMS4zNy41Ni0xLjA5IDIuMzggMi40NS45MXptLTEzLjQyIDQuODhsLS44OS0yLjE1LTEuMDMgMi44LTEuOTgtNC43Ny0xLjQxLjU5IDEuOTYgNC43NC0yLjY4LTEuMjMuODkgMi4xNSAzLjcyIDEuNyAxLjQyLTMuODN6bTEyLjEtMjkuMjhsMS4zOC41Ny0uOC0xLjczIDMuMDUgMS4yNi4zNy0uOTEtMy4wMy0xLjI1IDEuNzctLjY2LTEuMzctLjU3LTIuNDUuOTEgMS4wOCAyLjM4em0tMTIuOTMtNi4wNGwuODgtMi4xNS0yLjcxIDEuMjUgMS45OC00Ljc3LTEuNDEtLjU4LTEuOTcgNC43NC0xLjAzLTIuNzYtLjg4IDIuMTQgMS40MiAzLjgzIDMuNzItMS43em0yOS4yNS0xMi4xNWwuNTcgMS4zOC42Ny0xLjc5IDEuMjYgMy4wNS45LS4zOC0xLjI1LTMuMDMgMS43MS43OC0uNTctMS4zNi0yLjM3LTEuMS0uOTIgMi40NXptLTQuODctMTMuNDFsMi4xNC0uODktMi43OS0xLjA0IDQuNzYtMS45Ny0uNTgtMS40MS00Ljc0IDEuOTYgMS4yMi0yLjY5LTIuMTQuODktMS43MSAzLjcyIDMuODQgMS40M3ptMjkuMjcgMTIuMWwtLjU2IDEuMzcgMS43My0uOC0xLjI2IDMuMDUuOS4zOCAxLjI2LTMuMDQuNjYgMS43Ny41Ni0xLjM3LS45LTIuNDUtMi4zOSAxLjA5em02LjA1LTEyLjk0bDIuMTQuODktMS4yNC0yLjcxIDQuNzYgMS45Ny41OS0xLjQxLTQuNzQtMS45NiAyLjc2LTEuMDQtMi4xNC0uODgtMy44MyAxLjQyIDEuNyAzLjcyem03LjU5IDIyLjI3bC0xLjE4LjkxIDEuOTEuMTgtMi42MyAyLjAxLjYuNzggMi42MS0yLjAxLS4zMiAxLjg2IDEuMTgtLjkuNDQtMi41OC0yLjYxLS4yNXpNMTAwIDM1LjFsMS40MiAxLjg0LjI3LTIuOTYgMy4xNCA0LjA4IDEuMjItLjkyLTMuMTMtNC4wNyAyLjkxLjQ4LTEuNDEtMS44My00LjAzLS42OS0uMzkgNC4wN3ptLTQuMTEgMzEuNDFsLTEuNDctLjE5IDEuMjIgMS40Ny0zLjI4LS40NC0uMTMuOTggMy4yNi40My0xLjUzIDEuMDkgMS40Ny4xOSAyLjEzLTEuNTEtMS42Ny0yLjAyek0xMDkuOTUgNjlsLS4zIDIuMyAyLjMtMS45LS42OCA1LjExIDEuNTIuMi42Ny01LjA5IDEuNzEgMi40MS4zLTIuMy0yLjM3LTMuMzQtMy4xNSAyLjYxek04NC44MyA4OC4zMWwtLjktMS4xOC0uMTggMS45LTIuMDEtMi42Mi0uNzguNTkgMi4wMSAyLjYxLTEuODctLjMxLjkxIDEuMTcgMi41OC40NC4yNC0yLjZ6bTguMTggMTEuN2wtMS44MyAxLjQxIDIuOTYuMjgtNC4wOSAzLjE0LjkzIDEuMjEgNC4wNy0zLjEyLS40OSAyLjkgMS44NC0xLjQxLjY5LTQuMDMtNC4wOC0uMzh6bS0zMS40LTQuMTJsLjE5LTEuNDctMS40NyAxLjIyLjQzLTMuMjctLjk3LS4xMy0uNDMgMy4yNi0xLjA5LTEuNTQtLjIgMS40NyAxLjUyIDIuMTMgMi4wMi0xLjY3em0tMi41IDE0LjA2bC0yLjI5LS4zIDEuOSAyLjI5LTUuMTItLjY2LS4xOSAxLjUxIDUuMDguNjctMi40IDEuNzEgMi4zLjMgMy4zNC0yLjM2LTIuNjItMy4xNnptLTE5LjMtMjUuMTFsMS4xOC0uOTEtMS45LS4xNyAyLjYyLTIuMDItLjYtLjc3LTIuNiAyIC4zMS0xLjg2LTEuMTcuOS0uNDQgMi41OCAyLjYuMjV6bS0xMS43IDguMThsLTEuNDEtMS44NC0uMjggMi45Ny0zLjE0LTQuMS0xLjIxLjk0IDMuMTIgNC4wNy0yLjkxLS41IDEuNDIgMS44NCA0LjAzLjY5LjM4LTQuMDd6bTQuMTEtMzEuNDFsMS40OC4xOS0xLjIyLTEuNDcgMy4yNy40My4xMy0uOTYtMy4yNi0uNDMgMS41NC0xLjEtMS40Ny0uMTktMi4xMyAxLjUxIDEuNjYgMi4wMnptLTE0LjA1LTIuNDlsLjMtMi4zLTIuMyAxLjkxLjY3LTUuMTItMS41MS0uMi0uNjcgNS4wOS0xLjcyLTIuNDEtLjI5IDIuMyAyLjM2IDMuMzQgMy4xNi0yLjYxem0yNS4xMS0xOS4zbC45MSAxLjE3LjE3LTEuOSAyLjAxIDIuNjIuNzgtLjYtMi0yLjYgMS44Ni4zMS0uOS0xLjE3LTIuNTgtLjQ0LS4yNSAyLjYxek0zNS4xIDI4LjExbDEuODQtMS40LTIuOTctLjI4IDQuMDktMy4xNC0uOTMtMS4yMS00LjA3IDMuMTEuNDktMi45MS0xLjgzIDEuNDItLjcgNC4wMyA0LjA4LjM4em0zMS40MSA0LjEybC0uMiAxLjQ3IDEuNDctMS4yMi0uNDMgMy4yNy45OC4xMy40Mi0zLjI1IDEuMSAxLjUzLjE5LTEuNDctMS41MS0yLjEzLTIuMDIgMS42N3pNNjkgMTguMTdsMi4zLjMtMS45LTIuMjkgNS4xMS42Ni4xOS0xLjUxLTUuMDgtLjY3IDIuNC0xLjcxLTIuMjktLjMtMy4zNCAyLjM3TDY5IDE4LjE3em02LjkyIDUuMzhsLTEuNzktLjQ4IDEuMjcgMi4wMi0zLjk5LTEuMDctLjMxIDEuMTkgMy45NiAxLjA2LTIuMDkgMS4xMSAxLjguNDggMi44OS0xLjU0LTEuNzQtMi43N3oiIGZpbGw9IiM4ZGMxNDEiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03OTUuNTMgMjg4LjE0Yy00IDAtNi0yLjU2LTYtNy40MyAwLTUuMTQgMi4zOS03LjM4IDYuMTEtNy4zOGE3LjQyIDcuNDIgMCAwMTMuMzcuNzIgNSA1IDAgMDEtLjM2IDEuMTEgNi4xMSA2LjExIDAgMDAtMy0uNzVjLTMuMjIgMC00Ljc4IDEuNjktNC43OCA2LjM5IDAgNC4yMSAxLjQxIDYuMjYgNC43IDYuMjZhNi4xOCA2LjE4IDAgMDAzLjQtLjk0IDYuNTcgNi41NyAwIDAxLjM2IDEuMTEgNy40MyA3LjQzIDAgMDEtMy44Ljkxem0xMC41NyAwYy0yLjczIDAtNC40OC0xLjY0LTQuNDgtNS43OCAwLTMuNzYgMS44Ni01Ljc5IDQuNTctNS43OXM0LjUzIDEuNTIgNC41MyA1Ljc5YzAgNC4wMS0xLjk5IDUuNzgtNC42MiA1Ljc4em0uMDktMTAuNTJjLTEuODQgMC0zLjM1Ljg5LTMuMzUgNC43NCAwIDMuNjkgMS4yNiA0Ljc0IDMuMjggNC43NHMzLjM4LTEgMy4zOC00Ljc0LTEuMzMtNC43NC0zLjMxLTQuNzR6bTIwLjkxIDEwLjMxdi04LjEzYTEuOTMgMS45MyAwIDAwLTIuMTQtMi4xNCA0LjI3IDQuMjcgMCAwMC0zIDEuMTd2OS4xaC0xLjEzdi04LjEzYTIgMiAwIDAwLTIuMi0yLjE0IDQuNTQgNC41NCAwIDAwLTIuOTMgMS4xM3Y5LjE0aC0xLjEzdi0xMS4wOGE1Ljg1IDUuODUgMCAwMTEuMTMtLjExdjEuMDloLjA3YTQuMTIgNC4xMiAwIDAxMy0xLjI2IDIuNzggMi43OCAwIDAxMi43MyAxLjU2IDUuMTcgNS4xNyAwIDAxMy42MS0xLjU2YzEuNjUgMCAzLjEuNzMgMy4xIDMuMzF2OC4wNXptOS4yLjIxYTYuMzEgNi4zMSAwIDAxLTIuMzUtLjQ3djQuNjZoLTEuMTN2LTE1LjQ4YTUuOTMgNS45MyAwIDAxMS4xMy0uMTF2MWguMDVhNC45MSA0LjkxIDAgMDEzLjMxLTEuMTdjMi4yNCAwIDMuODggMS40NyAzLjg4IDUuNDUuMDIgNC4zNS0xLjgxIDYuMTItNC44OSA2LjEyem0uNzUtMTAuNWE1LjI3IDUuMjcgMCAwMC0zLjEgMS4wN3Y3Ljg4YTYuMDggNi4wOCAwIDAwMi40NC41MWMyLjM3IDAgMy42MS0xLjI4IDMuNjEtNC45MXMtMS4xMy00LjU1LTIuOTUtNC41NXptMTQuNTIgMTAuMjl2LTFoLS4wNmE2LjExIDYuMTEgMCAwMS0zLjU1IDEuMTdjLTEuNjQgMC0zLS43Mi0zLTMuMjh2LThhNi4xMiA2LjEyIDAgMDExLjE0LS4xMXY4LjE4YzAgMS4yNi41NSAyLjE0IDIgMi4xNGE2LjA4IDYuMDggMCAwMDMuNDQtMS4wN3YtOS4xNGE2IDYgMCAwMTEuMTQtLjExdjExLjE5em04Ljk5LjIxYy0yIDAtMi43My0xLjA2LTIuNzMtMy4yOHYtNy4xMmgtMS4zOXYtMWgxLjM5di0yLjQ3YTMuOTEgMy45MSAwIDAxMS4xMy0uMjJ2Mi42OWgyLjc2YTcuMjggNy4yOCAwIDAxLS4wOSAxSDg1OVYyODVjMCAxLjU4LjM5IDIuMSAxLjU2IDIuMWE0LjQgNC40IDAgMDAxLjY1LS4zNSAzLjc1IDMuNzUgMCAwMS4xOSAxLjA3IDQuMzIgNC4zMiAwIDAxLTEuODQuMzJ6bTEyLjA1LTUuODNoLTYuOTJ2LjEzYzAgMy4wOC44OCA0LjY0IDMuNjUgNC42NGE1LjI2IDUuMjYgMCAwMDIuNzEtLjczIDQuODggNC44OCAwIDAxLjM3IDEgNi4yNCA2LjI0IDAgMDEtMy4xNC43NmMtMy4xNiAwLTQuNzgtMS43OS00Ljc4LTUuNjMgMC00LjMgMS45LTUuOTQgNC4zMS01Ljk0czMuODQgMS40MSAzLjg0IDQuMTljMCAuNS0uMDIgMS4wNy0uMDQgMS41OHptLTYuOS0uODloNS44MXYtLjczYzAtMi4yOC0xLjA5LTMuMTYtMi43Ny0zLjE2cy0yLjkzIDEuMTEtMy4wNCAzLjg5em0xOC41Mi42NmgtMi4zMXY1Ljg1aC0xLjE5di0xNC4yNGEyMy4xMyAyMy4xMyAwIDAxMy41OS0uM2MyLjQ3IDAgNC43NiAxLjEzIDQuNzYgNC4zMSAwIDMuMDEtMi4zMSA0LjM4LTQuODUgNC4zOHptLjExLTcuNjljLS41MiAwLTEuMzkuMDctMi40Mi4xN3Y2LjQ5SDg4NGMyLjI1IDAgMy44NS0uODkgMy44NS0zLjM1cy0xLjY4LTMuMzEtMy41MS0zLjMxem0xMy4yMiAzLjQ2YTMuNzggMy43OCAwIDAwLS45NC0uMTFjLS43NSAwLTEuNTYuMTEtMi43OCAxLjU0djguNjVoLTEuMTN2LTExLjA4YTUuNzggNS43OCAwIDAxMS4xMy0uMTF2MS40MWguMDZjMS4zNS0xLjQ1IDIuMTgtMS41OCAyLjg3LTEuNThhMy4xNSAzLjE1IDAgMDEuOTEuMTEgOCA4IDAgMDEtLjEyIDEuMTd6bTYuNzUgMTAuMjljLTIuNzQgMC00LjQ5LTEuNjQtNC40OS01Ljc4IDAtMy43NiAxLjg2LTUuNzkgNC41Ny01Ljc5czQuNTMgMS41MiA0LjUzIDUuNzljMCA0LjAxLTEuOTkgNS43OC00LjYxIDUuNzh6bS4wOC0xMC41MmMtMS44NCAwLTMuMzUuODktMy4zNSA0Ljc0IDAgMy42OSAxLjI2IDQuNzQgMy4yOSA0Ljc0czMuMzctMSAzLjM3LTQuNzQtMS4zMi00Ljc0LTMuMzEtNC43NHptNi40MSAxNC45MmEzLjc5IDMuNzkgMCAwMS0uMTktMS4wOWMxLjYtLjEyIDIuMTUtMSAyLjE1LTIuNDV2LTEyLjIyaDEuMTNWMjg5YTMuMjMgMy4yMyAwIDAxLTMuMDkgMy41NHptMi41Mi0xOC4yMWEuNzEuNzEgMCAwMS0uNzMtLjc5Ljc0Ljc0IDAgMTExLjQ4IDAgLjcxLjcxIDAgMDEtLjc1Ljc5em0xMi41MSA3Ljk4aC02Ljkydi4xM2MwIDMuMDguODggNC42NCAzLjY2IDQuNjRhNS4zMiA1LjMyIDAgMDAyLjcxLS43MyA0LjM1IDQuMzUgMCAwMS4zNiAxIDYuMjQgNi4yNCAwIDAxLTMuMTQuNzZjLTMuMTYgMC00Ljc4LTEuNzktNC43OC01LjYzIDAtNC4zIDEuOS01Ljk0IDQuMzEtNS45NHMzLjg1IDEuNDEgMy44NSA0LjE5YzAgLjUtLjAzIDEuMDctLjA1IDEuNTh6bS02Ljg5LS44OWg1LjhhNi4xMSA2LjExIDAgMDAwLS43M2MwLTIuMjgtMS4wOS0zLjE2LTIuNzgtMy4xNnMtMi45NiAxLjExLTMuMDIgMy44OXptMTQuNTQgNi43MmMtMy4yIDAtNC43NC0xLjkyLTQuNzQtNS41OSAwLTQuMzEgMi02IDQuNS02YTguMyA4LjMgMCAwMTIuODIuNDkgMy44NiAzLjg2IDAgMDEtLjIzIDEuMDkgNi40NiA2LjQ2IDAgMDAtMi41Ni0uNTFjLTIgMC0zLjMxIDEuMDktMy4zMSA0LjQ4IDAgMy44NyAxLjE3IDUgMy41IDVhNS4wOSA1LjA5IDAgMDAyLjY1LS42OSA0LjI2IDQuMjYgMCAwMS4yOSAxLjA1IDYuMiA2LjIgMCAwMS0yLjkyLjY4em05LjUyIDBjLTIuMDUgMC0yLjczLTEuMDYtMi43My0zLjI4di03LjEyaC0xLjM5di0xaDEuMzl2LTIuNDdhMy43OCAzLjc4IDAgMDExLjEzLS4yMnYyLjY5aDIuNzZhNy4yOCA3LjI4IDAgMDEtLjA5IDFoLTIuNjdWMjg1YzAgMS41OC4zOSAyLjEgMS41NiAyLjFhNC4zMSA0LjMxIDAgMDAxLjY0LS4zNSAzLjQ0IDMuNDQgMCAwMS4yIDEuMDcgNC4zMiA0LjMyIDAgMDEtMS44LjMyem03LjQ2LTEwLjI2YTQuMjQgNC4yNCAwIDAxLjM3LTEuNzggNC40MiA0LjQyIDAgMDExLTEuNDIgNC40NiA0LjQ2IDAgMDEzLjE3LTEuMjkgNC41MyA0LjUzIDAgMDE0LjE1IDIuNjggNC4zMyA0LjMzIDAgMDEuMzYgMS43NiA0LjQgNC40IDAgMDEtLjM2IDEuNzkgNC40NSA0LjQ1IDAgMDEtMSAxLjQyIDQuNTMgNC41MyAwIDAxLTEuNDMuOTUgNC42NSA0LjY1IDAgMDEtMS43NC4zNCA0LjU3IDQuNTcgMCAwMS0xLjc0LS4zNCA0LjQ1IDQuNDUgMCAwMS0yLjQtMi4zNSA0LjExIDQuMTEgMCAwMS0uMzgtMS43NnptLjczIDBhMy43MiAzLjcyIDAgMDAuMjkgMS41IDMuODUgMy44NSAwIDAwLjgxIDEuMiA0LjA5IDQuMDkgMCAwMDEuMi44MSAzLjkyIDMuOTIgMCAwMDMgMCAzLjcxIDMuNzEgMCAwMDEuMi0uODIgMy41OCAzLjU4IDAgMDAuODEtMS4yMSAzLjg3IDMuODcgMCAwMC4zLTEuNTMgMy43OSAzLjc5IDAgMDAtLjMtMS41IDMuNzQgMy43NCAwIDAwLTItMiAzLjY1IDMuNjUgMCAwMC0xLjUtLjMzIDMuODMgMy44MyAwIDAwLTEuNDguMjkgNC4wOSA0LjA5IDAgMDAtMS4yLjgxIDMuNzggMy43OCAwIDAwLS44MSAxLjIxIDMuODYgMy44NiAwIDAwLS4zMiAxLjU3em0yLjExLTIuNThoMS45YTIuMjQgMi4yNCAwIDAxMS4zOC4zNSAxLjM3IDEuMzcgMCAwMS40NSAxLjE0IDEuMjUgMS4yNSAwIDAxLS40IDEgMS43NiAxLjc2IDAgMDEtMSAuMzlsMS40OSAyLjI4aC0uNzhsLTEuMzQtMi4yaC0xdjIuMjJoLS43MnptLjcyIDIuMzFoMS40MWExLjQ5IDEuNDkgMCAwMC40NS0uMS43MS43MSAwIDAwLjMxLS4yNi44MS44MSAwIDAwLjExLS40OC43Ny43NyAwIDAwLS4xLS40Mi43Mi43MiAwIDAwLS4yNy0uMjUgMS4xMiAxLjEyIDAgMDAtLjM4LS4xMUg5NTR6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjQ0LjQ3IC0xODUuOTQpIi8+PC9zdmc+" width="500px" alt="Logo">
+
+<header id="title-block-header">
+<h1 class="title">OCP Composite EAT Profile for Platform Inventory
+Attestation</h1>
+<h2 class="version">Version 0.8</h1>
+
+
+</header>
+</div>
+<div id="bottom">
+<strong>
+	<p>Date: 2026-09-10</p>
+</strong>
+</div>
+<h1>Table of contents</h1>
+<nav class="toc">
+<ul>
+<li>List of Figures</li>
+<li>List of Tables</li>
+<li><a href="#revision-history" id="toc-revision-history">Revision
+History</a></li>
+<li><a href="#compliance-with-ocp-tenets" id="toc-compliance-with-ocp-tenets">Compliance with OCP Tenets</a>
+<ul>
+<li><a href="#openness" id="toc-openness">Openness</a></li>
+<li><a href="#efficiency" id="toc-efficiency">Efficiency</a></li>
+<li><a href="#impact" id="toc-impact">Impact</a></li>
+<li><a href="#scale" id="toc-scale">Scale</a></li>
+<li><a href="#sustainability" id="toc-sustainability">Sustainability</a></li>
+</ul></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a>
+<ul>
+<li><a href="#problem-statement" id="toc-problem-statement">Problem
+Statement</a></li>
+<li><a href="#approach" id="toc-approach">Approach</a></li>
+<li><a href="#scope" id="toc-scope">Scope</a></li>
+</ul></li>
+<li><a href="#conventions-and-terminology" id="toc-conventions-and-terminology">Conventions and
+Terminology</a></li>
+<li><a href="#architecture-and-trust-model" id="toc-architecture-and-trust-model">Architecture and Trust Model</a>
+<ul>
+<li><a href="#composite-device-architecture-and-trust-boundaries" id="toc-composite-device-architecture-and-trust-boundaries">Composite
+Device Architecture and Trust Boundaries</a></li>
+<li><a href="#delegated-collection-and-bundle-assembly-functions" id="toc-delegated-collection-and-bundle-assembly-functions">Delegated
+Collection and Bundle-Assembly Functions</a></li>
+<li><a href="#threat-model" id="toc-threat-model">Threat Model</a></li>
+<li><a href="#security-properties-and-limits" id="toc-security-properties-and-limits">Security Properties and
+Limits</a></li>
+</ul></li>
+<li><a href="#composite-eat-profile" id="toc-composite-eat-profile">Composite EAT Profile</a>
+<ul>
+<li><a href="#profile-identifier" id="toc-profile-identifier">Profile
+Identifier</a></li>
+<li><a href="#profile-conformance" id="toc-profile-conformance">Profile
+Conformance</a></li>
+<li><a href="#bundle" id="toc-bundle">Bundle Structure</a></li>
+<li><a href="#top-claims" id="toc-top-claims">Top-Level Claims</a></li>
+<li><a href="#self-meas" id="toc-self-meas">Lead Attester
+Self-Measurements</a></li>
+</ul></li>
+<li><a href="#detached-evidence" id="toc-detached-evidence">Detached
+Sub-Attester Evidence</a>
+<ul>
+<li><a href="#digest-binding" id="toc-digest-binding">Detached-Submodule-Digest Binding</a></li>
+<li><a href="#digest-rules" id="toc-digest-rules">Deterministic Encoding
+and Digest Rules</a></li>
+<li><a href="#native-evidence" id="toc-native-evidence">Native Evidence
+Carriage</a>
+<ul>
+<li><a href="#spdm-signed-measurements" id="toc-spdm-signed-measurements">SPDM Signed Measurements</a></li>
+<li><a href="#device-emitted-eat" id="toc-device-emitted-eat">Device-Emitted EAT</a></li>
+<li><a href="#recursive-composite-eat" id="toc-recursive-composite-eat">Recursive Composite EAT</a></li>
+<li><a href="#spdm-carried-tcg-dice-concise-evidence" id="toc-spdm-carried-tcg-dice-concise-evidence">SPDM-Carried TCG DICE
+Concise Evidence</a></li>
+<li><a href="#cmw-and-digest-boundaries" id="toc-cmw-and-digest-boundaries">CMW and Digest Boundaries</a></li>
+</ul></li>
+<li><a href="#env-id" id="toc-env-id">Target Environment
+Identifier</a></li>
+</ul></li>
+<li><a href="#verification" id="toc-verification">Verification
+(Informative)</a></li>
+<li><a href="#security" id="toc-security">Security Considerations</a>
+<ul>
+<li><a href="#native-evidence-protection" id="toc-native-evidence-protection">Native Evidence Protection</a></li>
+<li><a href="#lead-attester-protection" id="toc-lead-attester-protection">Lead Attester Protection</a></li>
+<li><a href="#resource-exhaustion" id="toc-resource-exhaustion">Resource
+Exhaustion</a></li>
+</ul></li>
+<li><a href="#privacy-considerations" id="toc-privacy-considerations">Privacy Considerations</a></li>
+<li><a href="#iana-considerations" id="toc-iana-considerations">IANA
+Considerations</a></li>
+<li><a href="#alignment-and-change-control" id="toc-alignment-and-change-control">Alignment and Change
+Control</a></li>
+<li><a href="#acknowledgements" id="toc-acknowledgements">Acknowledgements</a></li>
+<li><a href="#appendix-example" id="toc-appendix-example">Worked
+Example</a></li>
+<li><a href="#appendix-cddl" id="toc-appendix-cddl">Collected
+CDDL</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<article>
+<h1>List of Figures</h1>
+<div class="list list-of-fig">
+
+</div>
+<h1>List of Tables</h1>
+<div class="list list-of-tbl">
+
+</div>
+<h1 id="revision-history">Revision History</h1>
+<table>
+<caption></caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 59%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Author(s)</th>
+<th style="text-align: left;">Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">0.8</td>
+<td style="text-align: left;">Xiling Sun (Microsoft)<br>Roksana
+Golizadeh Mojarad (Microsoft)</td>
+<td style="text-align: left;">Initial draft for OCP project review</td>
+</tr>
+</tbody>
+</table>
+<h1 id="compliance-with-ocp-tenets">Compliance with OCP Tenets</h1>
+<h2 id="openness">Openness</h2>
+<p>This profile uses publicly specified evidence formats and enables
+interoperable verification across platform and device vendors.</p>
+<h2 id="efficiency">Efficiency</h2>
+<p>This profile combines platform and device evidence into one artifact
+while preserving native device evidence, reducing repeated external
+collection and format-conversion operations.</p>
+<h2 id="impact">Impact</h2>
+<p>This profile provides a common method for conveying platform
+inventory attestation evidence from heterogeneous devices.</p>
+<h2 id="scale">Scale</h2>
+<p>This profile supports flat and recursive platform composition and
+uses detached evidence to accommodate platforms containing multiple
+independently attesting devices.</p>
+<h2 id="sustainability">Sustainability</h2>
+<p>This profile reuses existing EAT, CWT, COSE, CMW, and native device
+evidence formats, enabling incremental adoption without replacing
+existing device attestation implementations.</p>
+<h1 id="introduction">Introduction</h1>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>Platform attestation today is commonly disaggregated. Where
+per-device Evidence is retrieved independently, attesting a whole
+platform requires separate transactions that return independently
+protected responses. The Verifier must then reconstruct the relationship
+between those components, the encompassing platform, and the freshness
+challenge. There is no single signed, platform-scoped artifact that
+binds a Verifier nonce, the Lead Attester state, and the reported
+Sub-Attester Evidence set.</p>
+<p>Four gaps follow:</p>
+<ol type="1">
+<li>No aggregate. The Verifier reassembles the composite system from
+independent evidence artifacts.</li>
+<li>No uniform carriage. Sub-Attesters may expose SPDM signed
+measurements, emit their own signed EAT, or themselves produce a
+Composite EAT. A common structure is needed without rewriting the
+protected native evidence.</li>
+<li>Lead Attester overhead. Requiring the Lead Attester to implement
+every Sub-Attester protocol solely to describe itself increases
+trusted-computing base size and complexity.</li>
+<li>External orchestration. Retrieving and correlating Evidence
+independently from every component requires repeated externally visible
+operations and exposes internal topology and transport details to the
+Verifier.</li>
+</ol>
+<h2 id="approach">Approach</h2>
+<p>A Lead Attester, following the composite-device pattern in Section
+3.3 of <span class="citation" data-cites="ietf-rfc9334"><a href="#ref-ietf-rfc9334" role="doc-biblioref">[1]</a></span>, produces
+one signed Composite EAT. The token carries the Lead Attester’s
+measurements and, for every Sub-Attester, a detached-submodule digest
+that commits to its evidence. Native evidence is preserved and conveyed
+in CMW Records under CWT claim 299 in detached Claims-Sets within a
+Detached EAT Bundle (CBOR tag 602, <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>).</p>
+<p>The signed digests bind the detached Claims-Sets. Native signatures
+preserve the provenance of each Sub-Attester Evidence item. Evidence
+collection and bundle assembly MAY be performed outside the Lead
+Attester without granting those functions authority to produce or
+appraise native Evidence.</p>
+<p>The resulting bundle provides one platform-scoped artifact for a
+collection event. The signed main token binds the Lead Attester
+identity, Lead Attester measurements, freshness challenge, reported
+Target Environment Identifiers, and digests of the included detached
+Claims-Sets. This reduces external collection transactions and
+topology-dependent orchestration while preserving native Evidence
+provenance. It does not replace native Evidence validation or appraisal
+against independently trusted expected-composition information.</p>
+<h2 id="scope">Scope</h2>
+<p>This document specifies the Composite EAT evidence format for
+platform inventory attestation: the signed main token, detached
+native-Evidence carriage, digest binding, processing rules, and
+supported Evidence forms. It supports flat and recursive platform
+composition.</p>
+<p>Appraisal against composition endorsements and reference values is
+described informatively and specified by deployment policy. Transport
+APIs, physical connector locality, bus-level anti-relay guarantees,
+trust-anchor enrollment, and endorsement authoring are outside
+scope.</p>
+<p>Workload attestation, tenant attestation, confidential-computing
+device assignment, and Trusted Device Interface Security Protocol
+(TDISP) device attachment are outside the scope of this profile.</p>
+<h1 id="conventions-and-terminology">Conventions and Terminology</h1>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
+“SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and
+“OPTIONAL” in this document are to be interpreted as described in BCP 14
+<span class="citation" data-cites="ietf-rfc2119"><a href="#ref-ietf-rfc2119" role="doc-biblioref">[3]</a></span> <span class="citation" data-cites="ietf-rfc8174"><a href="#ref-ietf-rfc8174" role="doc-biblioref">[4]</a></span> when, and only when, they appear in
+all capitals.</p>
+<p>Data structures are defined using the Concise Data Definition
+Language (CDDL) <span class="citation" data-cites="ietf-rfc8610"><a href="#ref-ietf-rfc8610" role="doc-biblioref">[5]</a></span>.</p>
+<p>This document uses Attester, Verifier, Relying Party, Endorser,
+Reference Value Provider, Lead Attester, Sub-Attester, Composite Device,
+Target Environment, and Attesting Environment as defined in <span class="citation" data-cites="ietf-rfc9334"><a href="#ref-ietf-rfc9334" role="doc-biblioref">[1]</a></span>.</p>
+<dl>
+<dt>Detached Claims-Set:</dt>
+<dd>
+The native Sub-Attester evidence for one Target Environment, encoded as
+a CBOR Claims-Set and conveyed in the detached slot of the Detached EAT
+Bundle. A digest in the signed Composite EAT commits to it.
+</dd>
+<dt>Target Environment Identifier:</dt>
+<dd>
+A stable topology label rendered as an <code>env.*</code> string and
+used as the map key for a Sub-Attester in both the signed
+<code>submods</code> claim and detached Claims-Set map.
+</dd>
+</dl>
+<h1 id="architecture-and-trust-model">Architecture and Trust Model</h1>
+<h2 id="composite-device-architecture-and-trust-boundaries">Composite
+Device Architecture and Trust Boundaries</h2>
+<p>This profile applies the RFC 9334 composite-device pattern. The Lead
+Attester constructs and signs the main token, including the nonce, its
+identity and measurements, the reported Target Environment Identifiers,
+and the detached Claims-Set digests. The Lead Attester does not appear
+in <code>submods</code>; its claims are top-level claims.</p>
+<p>Sub-Attesters produce independently protected native Evidence. The
+Lead Attester signature does not make the Lead Attester authoritative
+for that Evidence. The Verifier validates the Composite EAT signature
+and each Sub-Attester’s native protection, then appraises the reported
+composition using independently trusted expected-composition information
+supplied by an Endorser, Reference Value Provider, or other source
+authorized by Verifier policy.</p>
+<p>In a BMC-mediated implementation, the Lead Attester can be a Root of
+Trust associated with the BMC. The BMC RoT protects the Composite EAT
+signing key, supplies the Lead Attester identity and local measurements,
+and produces the signed main token.</p>
+<h2 id="delegated-collection-and-bundle-assembly-functions">Delegated
+Collection and Bundle-Assembly Functions</h2>
+<p>Evidence collection and bundle assembly are implementation functions
+that MAY be delegated to one or more supporting components, either
+within or outside the Lead Attester’s protected boundary. These
+functions may discover Sub-Attesters, obtain native Evidence, construct
+detached Claims-Sets, and assemble or convey the final bundle. In a
+BMC-mediated implementation, BMC software commonly performs these
+functions outside the BMC RoT’s protected signing boundary.</p>
+<p>Delegation does not transfer Lead Attester authority. Supporting
+components may supply the nonce, reported Target Environment
+Identifiers, and detached Claims-Set digest records as inputs, and may
+combine the signed main token with the detached Claims-Sets. They cannot
+produce the Lead Attester signature and are not authoritative for native
+Evidence authenticity, collection completeness, or Target Environment
+Identifier correctness.</p>
+<p>A collection implementation SHOULD use an authenticated collection
+policy, or an equivalent trusted mechanism, to mitigate the risk of
+accidental or malicious omission during Evidence collection. Such
+hardening improves collection coverage and integrity. It does not
+establish platform-inventory completeness or make the collection
+implementation authoritative for expected platform composition.</p>
+<h2 id="threat-model">Threat Model</h2>
+<table>
+<caption></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Mitigation or detection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main-token forgery</td>
+<td>Validate the COSE_Sign1 signature and Lead Attester certificate
+path.</td>
+</tr>
+<tr>
+<td>Lead Attester certificate misbinding</td>
+<td>Match protected <code>x5t</code> to the end-entity certificate in
+<code>x5chain</code>.</td>
+</tr>
+<tr>
+<td>Composite EAT replay</td>
+<td>Match <code>eat_nonce</code> to the Verifier challenge.</td>
+</tr>
+<tr>
+<td>Detached Claims-Set modification</td>
+<td>Recompute the digest committed to by the signed <code>submods</code>
+entry.</td>
+</tr>
+<tr>
+<td>Fabricated native Evidence</td>
+<td>Validate the Sub-Attester’s native signature or other
+protection.</td>
+</tr>
+<tr>
+<td>Native Evidence replay</td>
+<td>Verify that the native Evidence binds the same nonce.</td>
+</tr>
+<tr>
+<td>Omission from one bundle map</td>
+<td>Require identical <code>submods</code> and detached Claims-Set key
+sets.</td>
+</tr>
+<tr>
+<td>Omission from both maps</td>
+<td>Compare the reported environment set with independently trusted
+expected-composition information.</td>
+</tr>
+<tr>
+<td>Target Environment Identifier mislabeling</td>
+<td>Compare the proven native identity with the identity authorized for
+that environment.</td>
+</tr>
+<tr>
+<td>Expected-composition substitution</td>
+<td>Authenticate and authorize the expected-composition source according
+to Verifier policy.</td>
+</tr>
+<tr>
+<td>Lead Attester compromise</td>
+<td>Treat the platform-scoped binding as compromised; independently
+protected Sub-Attester Evidence still requires separate validation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-properties-and-limits">Security Properties and
+Limits</h2>
+<p>The Composite EAT signature establishes integrity and freshness of
+the included platform observation. It does not independently establish
+platform-inventory completeness, Target Environment Identifier
+correctness, physical locality, or protection against bus-level relay.
+Those properties require Verifier appraisal against independently
+trusted expected-composition information and, where applicable,
+additional transport or hardware assurances.</p>
+<h1 id="composite-eat-profile">Composite EAT Profile</h1>
+<h2 id="profile-identifier">Profile Identifier</h2>
+<p>This specification requests assignment of the following object
+identifier (OID) from the OCP Security branch:</p>
+<p><code>ocp-composite-eat OBJECT IDENTIFIER ::= {1 3 6 1 4 1 42623 1 4}</code></p>
+<p>The requested dotted-decimal value is
+<code>1.3.6.1.4.1.42623.1.4</code>. This value is a proposed assignment
+pending confirmation by OCP and is not assigned or reserved by
+publication of this working draft. Implementations MUST NOT emit it as
+an assigned profile identifier until OCP approves the assignment.</p>
+<p>After approval, the <code>eat_profile</code> claim (claim 265) MUST
+contain this OID. In CBOR, it MUST use the preferred PEN-relative
+encoding with tag 112 defined by <span class="citation" data-cites="ietf-rfc9090"><a href="#ref-ietf-rfc9090" role="doc-biblioref">[6]</a></span>. The resulting diagnostic notation
+is <code>112(h&#39;82cc7f0104&#39;)</code>.</p>
+<p>The OID <code>1.3.6.1.4.1.42623.1.3</code> identifies the OCP Profile
+for IETF Entity Attestation Token and MUST NOT be used as the profile
+identifier of the Composite EAT main token. A device-emitted EAT carried
+as Sub-Attester Evidence MUST conform to the OCP Profile for IETF Entity
+Attestation Token and identify that profile in its own
+<code>eat_profile</code> claim. This requirement does not require a
+Sub-Attester that supplies native SPDM Evidence to emit an EAT.</p>
+<h2 id="profile-conformance">Profile Conformance</h2>
+<p>This section resolves the profile items in Section 6 of <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>.</p>
+<table>
+<caption></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Profile item</th>
+<th>This profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Profile identifier</td>
+<td>Requested OID <code>1.3.6.1.4.1.42623.1.4</code>; pending OCP
+approval</td>
+</tr>
+<tr>
+<td>Serialization</td>
+<td>CBOR satisfying the core deterministic encoding requirements of
+Section 4.2.1 of <span class="citation" data-cites="ietf-rfc8949"><a href="#ref-ietf-rfc8949" role="doc-biblioref">[7]</a></span></td>
+</tr>
+<tr>
+<td>Top-level message</td>
+<td>Detached EAT Bundle with tag 602 <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span></td>
+</tr>
+<tr>
+<td>Top-level media type</td>
+<td><code>application/eat-bun+cbor</code> <span class="citation" data-cites="ietf-rfc9782"><a href="#ref-ietf-rfc9782" role="doc-biblioref">[8]</a></span></td>
+</tr>
+<tr>
+<td>Main token</td>
+<td>CWT tag 61 containing COSE_Sign1 tag 18</td>
+</tr>
+<tr>
+<td>Token protection</td>
+<td>Exactly one COSE_Sign1 <span class="citation" data-cites="ietf-rfc9052"><a href="#ref-ietf-rfc9052" role="doc-biblioref">[9]</a></span> using ES384, algorithm -35 <span class="citation" data-cites="ietf-rfc9053"><a href="#ref-ietf-rfc9053" role="doc-biblioref">[10]</a></span>; MAC and encryption structures are
+prohibited</td>
+</tr>
+<tr>
+<td>Detached digest</td>
+<td>SHA-384, algorithm -43, with a 48-byte output <span class="citation" data-cites="ietf-rfc9053"><a href="#ref-ietf-rfc9053" role="doc-biblioref">[10]</a></span></td>
+</tr>
+<tr>
+<td>Key identification</td>
+<td>Protected SHA-384 <code>x5t</code>, label 34, and unprotected
+leaf-first <code>x5chain</code>, label 33 <span class="citation" data-cites="ietf-rfc9360"><a href="#ref-ietf-rfc9360" role="doc-biblioref">[11]</a></span></td>
+</tr>
+<tr>
+<td>Endorsement identification</td>
+<td>None; <code>x5chain</code> identifies the verification key and is
+not an endorsement identifier</td>
+</tr>
+<tr>
+<td>Freshness</td>
+<td>Exactly one 32-byte <code>eat_nonce</code>, unique for each
+request</td>
+</tr>
+<tr>
+<td>Main token content type</td>
+<td><code>application/eat+cwt</code> <span class="citation" data-cites="ietf-rfc9782"><a href="#ref-ietf-rfc9782" role="doc-biblioref">[8]</a></span></td>
+</tr>
+<tr>
+<td>Lead measurements</td>
+<td>TCG DICE Concise Evidence using CoAP Content-Format 10571
+(<code>application/ce+cbor</code>)</td>
+</tr>
+<tr>
+<td>Detached evidence claim</td>
+<td>CWT <code>cmw</code> claim 299 <span class="citation" data-cites="ietf-rfc9999"><a href="#ref-ietf-rfc9999" role="doc-biblioref">[12]</a></span></td>
+</tr>
+<tr>
+<td>Additional claims</td>
+<td>Prohibited by the closed CDDL maps in this profile</td>
+</tr>
+</tbody>
+</table>
+<p>{: title=“Composite EAT profile conformance”}</p>
+<p>Conforming producers MUST emit every choice in the table. Conforming
+Verifiers MUST support those choices. A producer MUST NOT add claims to
+<code>composite-eat-claims</code> or <code>detached-claims-set</code>
+beyond those permitted by the closed CDDL maps. A Verifier MUST reject a
+token or detached Claims-Set containing an additional claim.</p>
+<p>This is a full EAT profile in the sense of Section 6.2 of <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>. The classification applies to
+decoding, verifying, and checking freshness of the Composite EAT
+envelope. Native Evidence in claim 299 is claim content whose appraisal
+is governed by its identified format and Verifier policy. A Verifier
+MUST NOT produce a successful Attestation Result for a native Evidence
+item unless it can validate that item locally or delegate validation to
+a trusted Verifier that supports the identified format and
+algorithms.</p>
+<h2 id="bundle">Bundle Structure</h2>
+<p>The authoritative artifact is a Detached EAT Bundle with CBOR tag
+602. Slot 1 is the signed Composite EAT (<code>main-token</code>). Slot
+2 is the detached Claims-Set map keyed by Target Environment Identifier.
+When conveyed with a media type, the bundle MUST use
+<code>application/eat-bun+cbor</code>.</p>
+
+<pre class="cddl _placeholder"><code>composite-bundle = #6.602([
+  main-token: bstr .cbor composite-eat,
+  detached-claims-sets: {
+    + env-id =&gt; bstr .cbor detached-claims-set
+  }
+])
+
+composite-eat = #6.61(#6.18([
+  protected:   bstr .cbor protected-headers,
+  unprotected: unprotected-headers,
+  payload:     bstr .cbor composite-eat-claims,
+  signature:   bstr
+]))
+
+protected-headers = {
+  1:  -35,
+  3:  &quot;application/eat+cwt&quot;,
+  34: certificate-thumbprint
+}
+
+certificate-thumbprint = [ -43, bstr .size 48 ]
+
+unprotected-headers = {
+  33: cose-x509-chain
+}
+
+cose-x509-chain = bstr / [ 2* bstr ]</code></pre>
+
+<p>Every certificate in <code>cose-x509-chain</code> is DER encoded. A
+chain containing more than one certificate MUST begin with the Lead
+Attester end-entity certificate. The protected <code>x5t</code> MUST use
+SHA-384 and equal the SHA-384 digest of the complete DER encoding of
+that certificate.</p>
+<p>A Verifier MUST reject the token if <code>x5t</code> does not match
+the first certificate in <code>x5chain</code>. It MUST treat every
+carried certificate as untrusted input and validate a path to a trust
+anchor configured independently of the bundle, including applicable
+certificate usage, validity, and revocation checks <span class="citation" data-cites="ietf-rfc5280"><a href="#ref-ietf-rfc5280" role="doc-biblioref">[13]</a></span>.</p>
+<h2 id="top-claims">Top-Level Claims</h2>
+
+<pre class="cddl _placeholder"><code>composite-eat-claims = {
+  10:  bstr .size 32,
+  265: profile-oid,
+  256: bstr .size (7..33),
+  273: measurements-type,
+  266: submods-type
+}</code></pre>
+
+<p>The <code>eat_nonce</code> claim contains exactly one nonce. The
+Verifier MUST generate a new nonce for every request. The same nonce
+MUST be used to obtain every nonce-capable Sub-Attester evidence item
+included in the bundle.</p>
+<p>Claim 265 MUST equal the OCP Composite EAT profile OID approved
+before final publication. The requested value is not an assigned profile
+identifier until OCP approves it.</p>
+<h2 id="self-meas">Lead Attester Self-Measurements</h2>
+<p>The Lead Attester’s local evidence is carried in top-level claim 273,
+not in <code>submods</code>.</p>
+
+<pre class="cddl _placeholder"><code>measurements-type = [ + lead-attester-concise-evidence ]
+
+lead-attester-concise-evidence = [
+  content-format: 10571,
+  value: bstr .cbor concise-evidence-map
+]</code></pre>
+
+<p>This constrains the <code>measurements</code> claim from <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>. Each entry MUST use CoAP
+Content-Format 10571 (<code>application/ce+cbor</code>) and contain a
+byte-string-wrapped <code>concise-evidence-map</code> conforming to
+<span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[14]</a></span>. This is the same measurement
+encoding required by the OCP Profile for IETF Entity Attestation Token.
+The Concise Evidence carried here describes Target Environments measured
+by the Lead Attester; Sub-Attester Evidence remains detached under
+<code>submods</code>.</p>
+<h1 id="detached-evidence">Detached Sub-Attester Evidence</h1>
+<h2 id="digest-binding">Detached-Submodule-Digest Binding</h2>
+<p>Every Sub-Attester is represented in the signed token by a
+Detached-Submodule-Digest. The complete evidence is carried in slot 2 of
+the bundle under the same Target Environment Identifier.</p>
+
+<pre class="cddl _placeholder"><code>submods-type = { + env-id =&gt; detached-submodule-digest }
+
+detached-submodule-digest = [
+  hash-alg: -43,
+  digest:   bstr .size 48
+]
+
+env-id = tstr .size (5..64)</code></pre>
+
+<p>For every Target Environment Identifier E, <code>submods[E]</code>
+MUST equal the SHA-384 digest of <code>detached-claims-sets[E]</code>
+computed according to <a href="#digest-rules">Deterministic Encoding and
+Digest Rules</a>. The key set of <code>submods</code> MUST be identical
+to the key set of <code>detached-claims-sets</code>. A Verifier MUST
+reject a bundle containing a missing or unreferenced detached
+Claims-Set.</p>
+<h2 id="digest-rules">Deterministic Encoding and Digest Rules</h2>
+<p>Each detached Claims-Set MUST satisfy the core deterministic encoding
+requirements of Section 4.2.1 of <span class="citation" data-cites="ietf-rfc8949"><a href="#ref-ietf-rfc8949" role="doc-biblioref">[7]</a></span>. A Verifier MUST reject a Claims-Set
+that does not satisfy those requirements.</p>
+<p>The digest input is the encoded Claims-Set bytes directly, not the
+byte-string wrapper used by the bundle and not a textual encoding.
+SHA-384, COSE algorithm -43, MUST be used for every detached-submodule
+digest. This algorithm is independent of a measurement hash negotiated
+by a native protocol.</p>
+<h2 id="native-evidence">Native Evidence Carriage</h2>
+<p>Each detached Claims-Set contains registered CWT claim 299
+(<code>cmw</code>) from <span class="citation" data-cites="ietf-rfc9999"><a href="#ref-ietf-rfc9999" role="doc-biblioref">[12]</a></span>. Its value is one CMW Record. The
+CMW type identifies the native evidence format.</p>
+
+<pre class="cddl _placeholder"><code>detached-claims-set = {
+  299 =&gt; native-evidence-cmw
+}
+
+native-evidence-cmw = spdm-evidence-cmw /
+                      device-eat-cmw /
+                      composite-eat-bundle-cmw</code></pre>
+
+<p>Each CMW carries the Evidence conceptual-message indicator. Evidence
+is bit 2 in the RFC 9999 <code>ind</code> bitmap and is encoded as
+integer 4. CMW is encapsulation, not security protection. A Verifier
+MUST validate native protection and provenance after validating the
+detached digest.</p>
+<h3 id="spdm-signed-measurements">SPDM Signed Measurements</h3>
+
+<pre class="cddl _placeholder"><code>spdm-evidence-cmw = [
+  type: &quot;application/spdm-evidence+cbor&quot;,
+  value: bstr .cbor spdm-evidence,
+  ind: 4
+]
+
+spdm-evidence = [
+  signed-measurements: bstr,
+  cert-chain: bstr,
+  ? vca: bstr
+]</code></pre>
+
+<p><code>signed-measurements</code> is the binary SPDM
+SignedMeasurements value. For SPDM 1.2 and later, it includes the
+negotiated-version, capabilities, and algorithms (VCA) transcript. For
+SPDM 1.0 and 1.1, it contains only the signed
+<code>GET_MEASUREMENTS</code> exchange.</p>
+<p><code>cert-chain</code> is the concatenation, in SPDM chain order, of
+the DER-encoded certificates extracted from the reassembled SPDM
+certificate chain. It excludes the SPDM <code>Length</code>,
+<code>Reserved</code>, and <code>RootHash</code> fields and is not PEM
+encoded.</p>
+<p><code>vca</code> is the observed VCA transcript. It MUST be present
+for SPDM 1.0 and 1.1 and MUST be absent for SPDM 1.2 and later. See
+<span class="citation" data-cites="dmtf-dsp0274"><a href="#ref-dmtf-dsp0274" role="doc-biblioref">[15]</a></span>.</p>
+<h3 id="device-emitted-eat">Device-Emitted EAT</h3>
+
+<pre class="cddl _placeholder"><code>device-eat-cmw = [
+  type: &quot;application/eat+cwt&quot;,
+  device-token: bstr,
+  ind: 4
+]</code></pre>
+
+<p><code>device-token</code> MUST contain the complete CWT-encoded EAT
+as emitted by the device, without decoding or re-encoding. It MUST
+cryptographically bind the Verifier nonce. It MUST conform to the OCP
+Profile for IETF Entity Attestation Token and MUST identify that profile
+in claim 265. Other registered EAT media types require a revision of
+this profile.</p>
+<h3 id="recursive-composite-eat">Recursive Composite EAT</h3>
+<p>A Sub-Attester that is itself a Lead Attester MAY supply a complete
+Composite EAT bundle as native evidence.</p>
+
+<pre class="cddl _placeholder"><code>composite-eat-bundle-cmw = [
+  type: &quot;application/eat-bun+cbor&quot;,
+  value: bstr .cbor composite-bundle,
+  ind: 4
+]</code></pre>
+
+<p>The child bundle MUST conform to this profile and MUST bind the same
+Verifier nonce as its parent. The Verifier MUST recursively perform the
+validation in <a href="#verification">Verification</a>. Implementations
+SHOULD enforce a deployment-specific maximum nesting depth.</p>
+<h3 id="spdm-carried-tcg-dice-concise-evidence">SPDM-Carried TCG DICE
+Concise Evidence</h3>
+<p>Signed measurements carrying TCG DICE Concise Evidence <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[14]</a></span> use the
+<code>spdm-evidence-cmw</code> schema. The measurement blocks are
+preserved verbatim. The component performing collection does not need to
+distinguish ordinary SPDM measurements from blocks carrying TCG DICE
+Concise Evidence. The Verifier interprets those blocks under the
+applicable native Evidence profile.</p>
+<h3 id="cmw-and-digest-boundaries">CMW and Digest Boundaries</h3>
+<p>The CMW is part of the detached Claims-Set. The digest input
+therefore includes claim key 299, the complete deterministic CMW
+encoding, its <code>type</code> and <code>ind</code> fields, and its
+value byte string.</p>
+<p>A conveying protocol MAY additionally carry the complete
+<code>composite-bundle</code> as a CMW typed value. Such an outer
+wrapper is not part of a detached Claims-Set digest input.</p>
+<h2 id="env-id">Target Environment Identifier</h2>
+<p>The <code>submods</code> key and detached Claims-Set map key is a
+stable Target Environment Identifier, distinct from transport addresses,
+device UUIDs, and endorsement identifiers. It:</p>
+<ol type="1">
+<li>is lowercase ASCII;</li>
+<li>has at least two dot-separated components, with first component
+<code>env</code>;</li>
+<li>names a reported logical environment, not the device instance;
+and</li>
+<li>is between 5 and 64 bytes long.</li>
+</ol>
+<p>Examples include <code>env.nic.0</code>, <code>env.gpu.0</code>, and
+<code>env.pcie.4</code>.</p>
+<h1 id="verification">Verification (Informative)</h1>
+<p>A Verifier is expected to perform the following checks before
+producing an Attestation Result:</p>
+<ol type="1">
+<li>Decode the bundle, confirm tag 602, and enforce every encoding and
+algorithm choice in <a href="#profile-conformance">Profile
+Conformance</a>.</li>
+<li>Match protected <code>x5t</code> to the end-entity certificate in
+<code>x5chain</code>, validate the Lead Attester certificate path, and
+validate the COSE_Sign1 signature.</li>
+<li>Match <code>eat_nonce</code> to the challenge, match
+<code>eat_profile</code> to the approved OCP Composite EAT profile
+identifier, and validate the Lead Attester <code>ueid</code> and
+measurements.</li>
+<li>Require identical <code>submods</code> and detached Claims-Set key
+sets and recompute every digest according to <a href="#digest-rules">Deterministic Encoding and Digest Rules</a>.</li>
+<li>Parse each claim-299 CMW, validate its native signature and
+certificate or token chain, and match its nonce to the challenge.</li>
+<li>Match the identity proven by each native Evidence item to the
+identity authorized for its reported Target Environment Identifier by
+independently trusted composition information.</li>
+</ol>
+<p>The Composite EAT signature, matching key sets, and detached digests
+establish the integrity and freshness of the included platform
+observation. Digest validation detects replacement of an included
+detached Claims-Set, and native Evidence validation establishes its
+Sub-Attester provenance. Determining whether authentic Evidence is
+associated with the correct logical environment requires independent
+appraisal.</p>
+<p>A Verifier MUST NOT infer platform-inventory completeness solely from
+the Composite EAT signature or from agreement between the signed
+<code>submods</code> map and the detached Claims-Set map. A Verifier
+that determines platform-inventory completeness MUST compare the
+reported environment set and proven native identities against
+independently trusted expected-composition information. A platform CoRIM
+<span class="citation" data-cites="ietf-rats-corim"><a href="#ref-ietf-rats-corim" role="doc-biblioref">[16]</a></span> is one
+possible source. Native measurements are appraised against trusted
+reference values selected by Verifier policy. This profile does not
+define endorsement discovery or reference-value appraisal.</p>
+<h1 id="security">Security Considerations</h1>
+<p>The security considerations of <span class="citation" data-cites="ietf-rfc8392"><a href="#ref-ietf-rfc8392" role="doc-biblioref">[17]</a></span>, <span class="citation" data-cites="ietf-rfc9052"><a href="#ref-ietf-rfc9052" role="doc-biblioref">[9]</a></span>, <span class="citation" data-cites="ietf-rfc9360"><a href="#ref-ietf-rfc9360" role="doc-biblioref">[11]</a></span>, <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>, <span class="citation" data-cites="ietf-rfc9999"><a href="#ref-ietf-rfc9999" role="doc-biblioref">[12]</a></span>, and <span class="citation" data-cites="ietf-rfc9334"><a href="#ref-ietf-rfc9334" role="doc-biblioref">[1]</a></span> apply.</p>
+<h2 id="native-evidence-protection">Native Evidence Protection</h2>
+<p>Native signatures remain end-to-end verifiable because evidence is
+carried verbatim and pinned by a signed digest. A Verifier MUST validate
+both layers. Accepting the Composite EAT signature without validating
+native evidence would incorrectly treat collection-component-authored
+bytes as Sub-Attester-authored Evidence.</p>
+<p>Each native Evidence item MUST independently prove binding to the
+same nonce. A Verifier MUST reject an item whose nonce is absent,
+unverifiable, or does not match the challenge.</p>
+<p>The fixed ES384 and SHA-384 choices prevent algorithm substitution at
+the Composite EAT layer. For SPDM 1.0 and 1.1, the separately carried
+VCA transcript is not covered by the responder’s measurement signature.
+A deployment requiring cryptographic binding of negotiated SPDM
+parameters MUST require SPDM 1.2 or later in appraisal policy.</p>
+<h2 id="lead-attester-protection">Lead Attester Protection</h2>
+<p>The Lead Attester signing key and sources of <code>ueid</code> and
+top-level measurements MUST be protected from untrusted software
+performing Evidence collection or bundle assembly. The <code>ueid</code>
+MUST follow <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span> and remain
+stable for the Lead Attester.</p>
+<p>Compromise of the Lead Attester signing key permits forgery of the
+envelope, nonce, Lead Attester measurements, labels, and evidence
+digests. It does not permit forgery of an uncompromised Sub-Attester
+signature but defeats the platform-scoped binding. Verifiers MUST
+validate the Lead Attester certificate path, revocation state, and
+authorization policy rather than trusting a chain because it is carried
+in <code>x5chain</code>.</p>
+<p>Verifiers MUST perform the certificate-path and protected
+<code>x5t</code> validation specified in <a href="#bundle">Bundle
+Structure</a>.</p>
+<h2 id="resource-exhaustion">Resource Exhaustion</h2>
+<p>Detached evidence, certificate chains, recursive bundles, and the
+number of submodules are attacker-influenced inputs. Implementations
+SHOULD enforce limits on bundle size, Claims-Set size, certificate-chain
+length, submodule count, and nesting depth. Verifiers SHOULD validate
+structure and signed digests before expensive native appraisal, without
+treating a valid digest as a substitute for native signature
+validation.</p>
+<h1 id="privacy-considerations">Privacy Considerations</h1>
+<p>A stable Lead Attester <code>ueid</code> and end-entity certificate
+enable correlation. Native device certificates and device-emitted EATs
+can identify individual Sub-Attesters. Target Environment Identifiers
+expose topology, and measurements can reveal firmware versions or
+configuration.</p>
+<p>Deployments SHOULD restrict bundle access to authorized Verifiers and
+use a confidentiality-protected conveying protocol when this information
+is sensitive. A Verifier SHOULD disclose only the Attestation Result
+needed by a Relying Party rather than forwarding the bundle. Nonces
+SHOULD be unpredictable and MUST NOT encode user, account, workload, or
+other identifying information.</p>
+<h1 id="iana-considerations">IANA Considerations</h1>
+<p>This OCP specification requests no IANA action. It uses
+<code>application/spdm-evidence+cbor</code>, whose registration is
+requested by the aligned IETF Composite EAT specification <span class="citation" data-cites="draft-sun-rats-composite-eat"><a href="#ref-draft-sun-rats-composite-eat" role="doc-biblioref">[18]</a></span>. The media type identifies the
+deterministic CBOR encoding of <code>spdm-evidence</code> defined in
+this document. Until the registration is complete, implementations
+remain subject to the status of that IETF request.</p>
+<h1 id="alignment-and-change-control">Alignment and Change Control</h1>
+<p>This profile adopts the Composite EAT mechanism defined in
+<code>draft-sun-rats-composite-eat-00</code> <span class="citation" data-cites="draft-sun-rats-composite-eat"><a href="#ref-draft-sun-rats-composite-eat" role="doc-biblioref">[18]</a></span> and applies additional constraints
+for OCP platform inventory attestation. Unless constrained by this
+specification, the Composite EAT structure and processing rules remain
+aligned with the IETF specification.</p>
+<p>The IETF and OCP specifications define separate full EAT profiles. A
+token identifies exactly one of them through claim 265; it does not
+identify both. Conformance to this OCP profile is determined by this
+specification. In particular, when an OCP Composite EAT carries a
+device-emitted EAT as Sub-Attester Evidence, that EAT MUST conform to
+the OCP Profile for IETF Entity Attestation Token. Native SPDM Evidence
+remains permitted and need not be converted to a device EAT. This OCP
+profile also constrains the Lead Attester’s claim 273 measurements to
+the TCG DICE Concise Evidence encoding used by the OCP Profile for IETF
+Entity Attestation Token.</p>
+<p>This specification requests OID <code>1.3.6.1.4.1.42623.1.4</code>
+for the OCP Composite EAT profile. The request follows the existing OCP
+Security branch and uses the next child value after the documented
+<code>.2</code> and <code>.3</code> assignments. OCP remains the
+assignment authority and MUST confirm that the requested child value is
+available before final publication. The OCP Profile for IETF Entity
+Attestation Token OID, <code>1.3.6.1.4.1.42623.1.3</code>, identifies a
+different full EAT profile and cannot be reused for the Composite EAT
+main token. After OCP approval, the profile CDDL MUST be narrowed to the
+exact assigned OID encoding. Final publication also depends on
+registration of <code>application/spdm-evidence+cbor</code> through the
+aligned IETF work.</p>
+<p>Changes to bundle structure, claims, algorithms, native evidence
+forms, deterministic encoding, digest input, or verification behavior
+require explicit OCP review. An incompatible change requires a new OCP
+profile identifier. When the IETF work becomes an RFC, this document
+SHOULD replace the draft reference with the RFC and document whether any
+technical differences remain.</p>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>The authors thank the OCP Security Project and IETF RATS reviewers
+whose feedback shaped the Composite EAT architecture and profile.</p>
+<h1 id="appendix-example">Worked Example</h1>
+<p>This non-normative diagnostic example elides certificates,
+signatures, and nested token bytes. The requested OID
+<code>1.3.6.1.4.1.42623.1.4</code> is shown only for review of the
+proposed profile encoding; it remains pending OCP approval. Exact
+detached Claims-Set vectors follow the diagnostic form.</p>
+
+<pre class="cbor-diag _placeholder"><code>602([
+  &lt;&lt;61(18([
+    &lt;&lt;{
+      1: -35,
+      3: &quot;application/eat+cwt&quot;,
+      34: [-43,
+        h&#39;6be9f10e1e9388b0f70028b060dc215a0dc4f1b2d60b407689465be40d6e1a28e31e3d7186968eac00ea97db833d715c&#39;]
+    }&gt;&gt;,
+    {33: h&#39;&lt;Lead Attester certificate&gt;&#39;},
+    &lt;&lt;{
+      10: h&#39;000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f&#39;,
+      256: h&#39;0111111111111111111111111111111111&#39;,
+      265: 112(h&#39;82cc7f0104&#39;), / requested OID; pending OCP approval /
+      266: {
+        &quot;env.nic.0&quot;: [-43,
+          h&#39;c322d4b38698e2a652dec5ef6c9158a1f5c654e415870d9a
+            accd3ae367be72bb5d5260f3433b93502a30fd858fb76746&#39;],
+        &quot;env.accel.0&quot;: [-43, h&#39;&lt;SHA-384 of accel Claims-Set&gt;&#39;],
+        &quot;env.child.0&quot;: [-43, h&#39;&lt;SHA-384 of child Claims-Set&gt;&#39;]
+      },
+      273: [[
+        10571, / application/ce+cbor /
+        &lt;&lt;({
+          / ce.ev-triples /
+          0: {
+            / ce.evidence-triples /
+            0: [[
+              / environment-map /
+              {0: {
+                / class-id, vendor, model /
+                0: 560(h&#39;01020304&#39;),
+                1: &quot;Example Platform Vendor&quot;,
+                2: &quot;BMC RoT&quot;
+              }},
+              / measurement-map array /
+              [{
+                / mkey: index 0 /
+                0: {0: 0},
+                / mval: SHA-384 digest /
+                1: {2: [[
+                  &quot;sha-384&quot;,
+                  h&#39;38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b&#39;
+                ]]}
+              }]
+            ]]
+          }
+        })&gt;&gt;
+      ]]
+    }&gt;&gt;,
+    h&#39;&lt;Lead Attester ES384 signature&gt;&#39;
+  ]))&gt;&gt;,
+  {
+    &quot;env.nic.0&quot;: &lt;&lt;{
+      299: [
+        &quot;application/spdm-evidence+cbor&quot;,
+        &lt;&lt;[h&#39;12010000aabbccdd&#39;, h&#39;30820100deadbeef&#39;]&gt;&gt;,
+        4
+      ]
+    }&gt;&gt;,
+    &quot;env.accel.0&quot;: &lt;&lt;{
+      299: [&quot;application/eat+cwt&quot;, h&#39;&lt;device CWT&gt;&#39;, 4]
+    }&gt;&gt;,
+    &quot;env.child.0&quot;: &lt;&lt;{
+      299: [
+        &quot;application/eat-bun+cbor&quot;,
+        h&#39;&lt;child Composite EAT bundle&gt;&#39;,
+        4
+      ]
+    }&gt;&gt;
+  }
+])</code></pre>
+
+<p>The deterministic encoding of the complete <code>env.nic.0</code>
+Claims-Set is:</p>
+
+<pre class="hex _placeholder"><code>a119012b83781e6170706c69636174696f6e2f7370646d2d65766964656e6365\
+2b63626f7253824812010000aabbccdd4830820100deadbeef04</code></pre>
+
+<p>Its SHA-384 digest is
+<code>c322d4b38698e2a652dec5ef6c9158a1f5c654e415870d9a</code>
+<code>accd3ae367be72bb5d5260f3433b93502a30fd858fb76746</code>.</p>
+<p>For device-emitted EAT, the synthetic CWT bytes are
+<code>d83dd28440a04040</code>. The deterministic Claims-Set encoding
+is:</p>
+
+<pre class="hex _placeholder"><code>a119012b83736170706c69636174696f6e2f6561742b63777448d83dd28440a0\
+404004</code></pre>
+
+<p>Its SHA-384 digest is
+<code>dd4e41442e3bb7b38fc05437cc9dae0b3e7a7188f37c8030</code>
+<code>7f5502d5c3e38b96f88c0666707c947a352c092d58974f2c</code>.</p>
+<p>For recursive composition, the synthetic child bundle contains the
+same CWT bytes and one detached <code>env.leaf.0</code> SPDM Claims-Set.
+The deterministic parent Claims-Set encoding is:</p>
+
+<pre class="hex _placeholder"><code>a119012b8378186170706c69636174696f6e2f6561742d62756e2b63626f7258\
+55d9025a8248d83dd28440a04040a16a656e762e6c6561662e30583aa119012b\
+83781e6170706c69636174696f6e2f7370646d2d65766964656e63652b63626f\
+7253824812010000aabbccdd4830820100deadbeef0404</code></pre>
+
+<p>Its SHA-384 digest is
+<code>41a15dc29c5be302be56efcd77a2d63afa7befdacf28115b</code>
+<code>35afbca6fcab5d0701201ccdfd9e766246457ba0afaf9e27</code>.</p>
+<p>The native evidence values in these vectors are synthetic and are not
+valid signatures or complete protocol responses. The encodings and
+digests are exact conformance vectors for the CMW, detached Claims-Set,
+and digest boundaries.</p>
+<h1 id="appendix-cddl">Collected CDDL</h1>
+<p>The following CDDL collects the profile grammar. The external
+<code>concise-evidence-map</code> type is defined by <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[14]</a></span> and is required when validating the
+collected grammar. <code>profile-oid</code> accepts a PEN-relative OID
+structure while the requested OID remains pending. After OCP approves
+the assignment, it MUST be narrowed to the exact assigned OID
+encoding.</p>
+
+<pre class="include small _placeholder"><code>; OCP Composite EAT profile CDDL.
+; Requested profile OID: 1.3.6.1.4.1.42623.1.4, pending OCP approval.
+; Its tag-112 content is h&#39;82cc7f0104&#39;. The profile-oid value will be fixed
+; after approval. This placeholder type MUST NOT be treated as authorization to
+; emit an arbitrary PEN-relative OID.
+
+composite-bundle = #6.602([
+  main-token: bstr .cbor composite-eat,
+  detached-claims-sets: {
+    + env-id =&gt; bstr .cbor detached-claims-set
+  }
+])
+
+composite-eat = #6.61(#6.18([
+  protected: bstr .cbor protected-headers,
+  unprotected: unprotected-headers,
+  payload: bstr .cbor composite-eat-claims,
+  signature: bstr
+]))
+
+protected-headers = {
+  1: -35,
+  3: &quot;application/eat+cwt&quot;,
+  34: certificate-thumbprint
+}
+
+certificate-thumbprint = [ -43, bstr .size 48 ]
+
+unprotected-headers = {
+  33: cose-x509-chain
+}
+
+cose-x509-chain = bstr / [ 2* bstr ]
+
+composite-eat-claims = {
+  10: bstr .size 32,
+  265: profile-oid,
+  256: bstr .size (7..33),
+  273: measurements-type,
+  266: submods-type
+}
+
+profile-oid = #6.112(bstr)
+
+; concise-evidence-map is defined by the TCG DICE Concise Evidence Binding for
+; SPDM specification and is an external CDDL dependency of this profile.
+measurements-type = [ + lead-attester-concise-evidence ]
+
+lead-attester-concise-evidence = [
+  content-format: 10571,
+  value: bstr .cbor concise-evidence-map
+]
+
+submods-type = { + env-id =&gt; detached-submodule-digest }
+
+detached-submodule-digest = [
+  hash-alg: -43,
+  digest: bstr .size 48
+]
+
+detached-claims-set = {
+  299 =&gt; native-evidence-cmw
+}
+
+native-evidence-cmw = spdm-evidence-cmw /
+                      device-eat-cmw /
+                      composite-eat-bundle-cmw
+
+spdm-evidence-cmw = [
+  type: &quot;application/spdm-evidence+cbor&quot;,
+  value: bstr .cbor spdm-evidence,
+  ind: 4
+]
+
+spdm-evidence = [
+  signed-measurements: bstr,
+  cert-chain: bstr,
+  ? vca: bstr
+]
+
+device-eat-cmw = [
+  type: &quot;application/eat+cwt&quot;,
+  device-token: bstr,
+  ind: 4
+]
+
+composite-eat-bundle-cmw = [
+  type: &quot;application/eat-bun+cbor&quot;,
+  value: bstr .cbor composite-bundle,
+  ind: 4
+]
+
+env-id = tstr .size (5..64)
+</code></pre>
+
+<h1 id="references">References</h1>
+<div class="{$refs}">
+
+</div>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-ietf-rfc9334" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline"><span>“Remote ATtestation procedureS (RATS)
+Architecture.”</span> IETF, Jan. 2023. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9334">https://datatracker.ietf.org/doc/html/rfc9334</a></div>
+</div>
+<div id="ref-ietf-rfc9711" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span>“The Entity Attestation Token
+(EAT).”</span> IETF, Feb. 2025. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9711">https://datatracker.ietf.org/doc/html/rfc9711</a></div>
+</div>
+<div id="ref-ietf-rfc2119" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span>“Key words for use in RFCs to Indicate
+Requirement Levels.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a></div>
+</div>
+<div id="ref-ietf-rfc8174" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span>“Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></div>
+</div>
+<div id="ref-ietf-rfc8610" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline"><span>“Concise Data Definition Language (CDDL):
+A Notational Convention to Express CBOR and JSON Data
+Structures.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc8610">https://datatracker.ietf.org/doc/html/rfc8610</a></div>
+</div>
+<div id="ref-ietf-rfc9090" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span>“Concise Binary Object Representation
+(CBOR) Tags for Object Identifiers.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9090">https://datatracker.ietf.org/doc/html/rfc9090</a></div>
+</div>
+<div id="ref-ietf-rfc8949" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline"><span>“Concise Binary Object Representation
+(CBOR).”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc8949">https://datatracker.ietf.org/doc/html/rfc8949</a></div>
+</div>
+<div id="ref-ietf-rfc9782" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline"><span>“Entity Attestation Token (EAT) Media
+Types.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9782">https://datatracker.ietf.org/doc/html/rfc9782</a></div>
+</div>
+<div id="ref-ietf-rfc9052" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline"><span>“CBOR Object Signing and Encryption
+(COSE): Structures and Process.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9052">https://datatracker.ietf.org/doc/html/rfc9052</a></div>
+</div>
+<div id="ref-ietf-rfc9053" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline"><span>“CBOR Object Signing and Encryption
+(COSE): Initial Algorithms.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9053">https://datatracker.ietf.org/doc/html/rfc9053</a></div>
+</div>
+<div id="ref-ietf-rfc9360" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline"><span>“CBOR Object Signing and Encryption
+(COSE): Header Parameters for Carrying and Referencing X.509
+Certificates.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9360">https://datatracker.ietf.org/doc/html/rfc9360</a></div>
+</div>
+<div id="ref-ietf-rfc9999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline"><span>“The RATS Conceptual Message
+Wrapper.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9999">https://datatracker.ietf.org/doc/html/rfc9999</a></div>
+</div>
+<div id="ref-ietf-rfc5280" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span>“Internet X.509 Public Key Infrastructure
+Certificate and CRL Profile.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc5280">https://datatracker.ietf.org/doc/html/rfc5280</a></div>
+</div>
+<div id="ref-tcg-dice-concise-evidence-binding-for-spdm" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“DICE Concise Evidence Binding for
+SPDM.”</span> Trusted Computing Group, Sept. 2025. Available: <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf">https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf</a></div>
+</div>
+<div id="ref-dmtf-dsp0274" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“Security Protocol and Data Model (SPDM)
+Specification.”</span> DMTF, Sept. 2024. Available: <a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.3.2.pdf">https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.3.2.pdf</a></div>
+</div>
+<div id="ref-ietf-rats-corim" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“Concise Reference Integrity
+Manifest.”</span> IETF, Nov. 2020. Available: <a href="https://datatracker.ietf.org/doc/draft-ietf-rats-corim">https://datatracker.ietf.org/doc/draft-ietf-rats-corim</a></div>
+</div>
+<div id="ref-ietf-rfc8392" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“CBOR Web Token (CWT).”</span> IETF.
+Available: <a href="https://datatracker.ietf.org/doc/html/rfc8392">https://datatracker.ietf.org/doc/html/rfc8392</a></div>
+</div>
+<div id="ref-draft-sun-rats-composite-eat" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“An EAT Profile for Composite Platform
+Attestation.”</span> IETF, 2026. Available: <a href="https://datatracker.ietf.org/doc/html/draft-sun-rats-composite-eat-00">https://datatracker.ietf.org/doc/html/draft-sun-rats-composite-eat-00</a></div>
+</div>
+</div>
+</article>
+</div>
+<script>// @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+//
+// AnchorJS - v5.0.0 - 2023-01-18
+// https://www.bryanbraun.com/anchorjs/
+// Copyright (c) 2023 Bryan Braun; Licensed MIT
+//
+// @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+!function(A,e){"use strict";"function"==typeof define&&define.amd?define([],e):"object"==typeof module&&module.exports?module.exports=e():(A.AnchorJS=e(),A.anchors=new A.AnchorJS)}(globalThis,function(){"use strict";return function(A){function u(A){A.icon=Object.prototype.hasOwnProperty.call(A,"icon")?A.icon:"",A.visible=Object.prototype.hasOwnProperty.call(A,"visible")?A.visible:"hover",A.placement=Object.prototype.hasOwnProperty.call(A,"placement")?A.placement:"right",A.ariaLabel=Object.prototype.hasOwnProperty.call(A,"ariaLabel")?A.ariaLabel:"Anchor",A.class=Object.prototype.hasOwnProperty.call(A,"class")?A.class:"",A.base=Object.prototype.hasOwnProperty.call(A,"base")?A.base:"",A.truncate=Object.prototype.hasOwnProperty.call(A,"truncate")?Math.floor(A.truncate):64,A.titleText=Object.prototype.hasOwnProperty.call(A,"titleText")?A.titleText:""}function d(A){var e;if("string"==typeof A||A instanceof String)e=[].slice.call(document.querySelectorAll(A));else{if(!(Array.isArray(A)||A instanceof NodeList))throw new TypeError("The selector provided to AnchorJS was invalid.");e=[].slice.call(A)}return e}this.options=A||{},this.elements=[],u(this.options),this.add=function(A){var e,t,o,i,n,s,a,r,l,c,h,p=[];if(u(this.options),0!==(e=d(A=A||"h2, h3, h4, h5, h6")).length){for(null===document.head.querySelector("style.anchorjs")&&((A=document.createElement("style")).className="anchorjs",A.appendChild(document.createTextNode("")),void 0===(h=document.head.querySelector('[rel="stylesheet"],style'))?document.head.appendChild(A):document.head.insertBefore(A,h),A.sheet.insertRule(".anchorjs-link{opacity:0;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}",A.sheet.cssRules.length),A.sheet.insertRule(":hover>.anchorjs-link,.anchorjs-link:focus{opacity:1}",A.sheet.cssRules.length),A.sheet.insertRule("[data-anchorjs-icon]::after{content:attr(data-anchorjs-icon)}",A.sheet.cssRules.length),A.sheet.insertRule('@font-face{font-family:anchorjs-icons;src:url(data:n/a;base64,AAEAAAALAIAAAwAwT1MvMg8yG2cAAAE4AAAAYGNtYXDp3gC3AAABpAAAAExnYXNwAAAAEAAAA9wAAAAIZ2x5ZlQCcfwAAAH4AAABCGhlYWQHFvHyAAAAvAAAADZoaGVhBnACFwAAAPQAAAAkaG10eASAADEAAAGYAAAADGxvY2EACACEAAAB8AAAAAhtYXhwAAYAVwAAARgAAAAgbmFtZQGOH9cAAAMAAAAAunBvc3QAAwAAAAADvAAAACAAAQAAAAEAAHzE2p9fDzz1AAkEAAAAAADRecUWAAAAANQA6R8AAAAAAoACwAAAAAgAAgAAAAAAAAABAAADwP/AAAACgAAA/9MCrQABAAAAAAAAAAAAAAAAAAAAAwABAAAAAwBVAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAMCQAGQAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAQAAg//0DwP/AAEADwABAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAAIAAAACgAAxAAAAAwAAAAMAAAAcAAEAAwAAABwAAwABAAAAHAAEADAAAAAIAAgAAgAAACDpy//9//8AAAAg6cv//f///+EWNwADAAEAAAAAAAAAAAAAAAAACACEAAEAAAAAAAAAAAAAAAAxAAACAAQARAKAAsAAKwBUAAABIiYnJjQ3NzY2MzIWFxYUBwcGIicmNDc3NjQnJiYjIgYHBwYUFxYUBwYGIwciJicmNDc3NjIXFhQHBwYUFxYWMzI2Nzc2NCcmNDc2MhcWFAcHBgYjARQGDAUtLXoWOR8fORYtLTgKGwoKCjgaGg0gEhIgDXoaGgkJBQwHdR85Fi0tOAobCgoKOBoaDSASEiANehoaCQkKGwotLXoWOR8BMwUFLYEuehYXFxYugC44CQkKGwo4GkoaDQ0NDXoaShoKGwoFBe8XFi6ALjgJCQobCjgaShoNDQ0NehpKGgobCgoKLYEuehYXAAAADACWAAEAAAAAAAEACAAAAAEAAAAAAAIAAwAIAAEAAAAAAAMACAAAAAEAAAAAAAQACAAAAAEAAAAAAAUAAQALAAEAAAAAAAYACAAAAAMAAQQJAAEAEAAMAAMAAQQJAAIABgAcAAMAAQQJAAMAEAAMAAMAAQQJAAQAEAAMAAMAAQQJAAUAAgAiAAMAAQQJAAYAEAAMYW5jaG9yanM0MDBAAGEAbgBjAGgAbwByAGoAcwA0ADAAMABAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAH//wAP) format("truetype")}',A.sheet.cssRules.length)),h=document.querySelectorAll("[id]"),t=[].map.call(h,function(A){return A.id}),i=0;i<e.length;i++)if(this.hasAnchorJSLink(e[i]))p.push(i);else{if(e[i].hasAttribute("id"))o=e[i].getAttribute("id");else if(e[i].hasAttribute("data-anchor-id"))o=e[i].getAttribute("data-anchor-id");else{for(r=a=this.urlify(e[i].textContent),s=0;n=t.indexOf(r=void 0!==n?a+"-"+s:r),s+=1,-1!==n;);n=void 0,t.push(r),e[i].setAttribute("id",r),o=r}(l=document.createElement("a")).className="anchorjs-link "+this.options.class,l.setAttribute("aria-label",this.options.ariaLabel),l.setAttribute("data-anchorjs-icon",this.options.icon),this.options.titleText&&(l.title=this.options.titleText),c=document.querySelector("base")?window.location.pathname+window.location.search:"",c=this.options.base||c,l.href=c+"#"+o,"always"===this.options.visible&&(l.style.opacity="1"),""===this.options.icon&&(l.style.font="1em/1 anchorjs-icons","left"===this.options.placement)&&(l.style.lineHeight="inherit"),"left"===this.options.placement?(l.style.position="absolute",l.style.marginLeft="-1.25em",l.style.paddingRight=".25em",l.style.paddingLeft=".25em",e[i].insertBefore(l,e[i].firstChild)):(l.style.marginLeft=".1875em",l.style.paddingRight=".1875em",l.style.paddingLeft=".1875em",e[i].appendChild(l))}for(i=0;i<p.length;i++)e.splice(p[i]-i,1);this.elements=this.elements.concat(e)}return this},this.remove=function(A){for(var e,t,o=d(A),i=0;i<o.length;i++)(t=o[i].querySelector(".anchorjs-link"))&&(-1!==(e=this.elements.indexOf(o[i]))&&this.elements.splice(e,1),o[i].removeChild(t));return this},this.removeAll=function(){this.remove(this.elements)},this.urlify=function(A){var e=document.createElement("textarea");return e.innerHTML=A,A=e.value,this.options.truncate||u(this.options),A.trim().replace(/'/gi,"").replace(/[& +$,:;=?@"#{}|^~[`%!'<>\]./()*\\\n\t\b\v\u00A0]/g,"-").replace(/-{2,}/g,"-").substring(0,this.options.truncate).replace(/^-+|-+$/gm,"").toLowerCase()},this.hasAnchorJSLink=function(A){var e=A.firstChild&&-1<(" "+A.firstChild.className+" ").indexOf(" anchorjs-link "),A=A.lastChild&&-1<(" "+A.lastChild.className+" ").indexOf(" anchorjs-link ");return e||A||!1}}});
+// @license-end</script>
+<script>
+  anchors.add('h1, h2, h3, h4, h5, h6');
+</script>
+</body>
+</html>
