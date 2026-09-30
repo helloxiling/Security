@@ -1,6 +1,6 @@
 ---
 title: "OCP Composite EAT Profile for Platform Inventory Attestation"
-version: "0.8"
+version: "0.80"
 type: BASE
 project: Security
 date: "2026-09-10"
@@ -9,7 +9,7 @@ bibliography: bibliography.yaml
 
 ---
 
-\currenttemplateversion
+<!-- \currenttemplateversion -->
 
 ---
 
@@ -282,7 +282,7 @@ This section resolves the profile items in Section 6 of [@{ietf-rfc9711}].
 | Top-level media type | `application/eat-bun+cbor` [@{ietf-rfc9782}] |
 | Main token | CWT tag 61 containing COSE_Sign1 tag 18 |
 | Token protection | Exactly one COSE_Sign1 [@{ietf-rfc9052}] using ES384, algorithm -35 [@{ietf-rfc9053}]; MAC and encryption structures are prohibited |
-| Detached digest | SHA-384, algorithm -43, with a 48-byte output [@{ietf-rfc9053}] |
+| Detached digest | SHA-384, algorithm -43, with a 48-byte output [@{ietf-rfc9054}] |
 | Key identification | Protected SHA-384 `x5t`, label 34, and unprotected leaf-first `x5chain`, label 33 [@{ietf-rfc9360}] |
 | Endorsement identification | None; `x5chain` identifies the verification key and is not an endorsement identifier |
 | Freshness | Exactly one 32-byte `eat_nonce`, unique for each request |
