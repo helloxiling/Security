@@ -1,6 +1,6 @@
 ---
 title: "OCP Composite EAT Profile for Platform Inventory Attestation"
-version: "0.80"
+version: "0.8.0"
 type: BASE
 project: Security
 date: "2026-09-10"
@@ -291,7 +291,8 @@ This section resolves the profile items in Section 6 of [@{ietf-rfc9711}].
 | Detached evidence claim | CWT `cmw` claim 299 [@{ietf-rfc9999}] |
 | Additional claims | Prohibited by the closed CDDL maps in this profile |
 <!-- {: title="Composite EAT profile conformance"} -->
-**Table 1:** Composite EAT profile conformance
+Table: Composite EAT profile conformance {#tbl:acsr-req}
+
 
 Conforming producers MUST emit every choice in the table. Conforming Verifiers
 MUST support those choices. A producer MUST NOT add claims to
