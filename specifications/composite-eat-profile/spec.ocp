@@ -1,13 +1,20 @@
 ---
 title: "OCP Composite EAT Profile for Platform Inventory Attestation"
+project: OCP Foundation
 version: "0.8.0"
-type: BASE
-project: Security
-date: "2026-09-10"
+type: Design
+Project: Security
+authors: Xiling Sun (Microsoft), Roksana Golizadeh Mojarad (Microsoft)
 bibliography: bibliography.yaml
-...
-
----
+License: 
+status: draft
+released: false
+class: specification
+date: 2026-09-10
+paragraph_numbering: no
+header-includes: |
+  \newenvironment{smallcode}{\begin{footnotesize}}{\end{footnotesize}}
+...  
 
 <!-- \currenttemplateversion -->
 
