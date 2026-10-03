@@ -685,13 +685,13 @@ lead-attester-concise-evidence = [
 
 <p>This constrains the <code>measurements</code> claim from <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>. Each entry MUST use CoAP
 Content-Format 10571 (<code>application/ce+cbor</code>) and contain a
-byte-string-wrapped <code>concise-evidence-map</code> that satisfies the
-Concise Evidence requirements of the OCP Profile for IETF Entity
-Attestation Token <span class="citation" data-cites="ocp-ietf-eat-profile"><a href="#ref-ocp-ietf-eat-profile" role="doc-biblioref">[15]</a></span>. Lead Attester and device-emitted
-EAT measurements therefore use the same OCP-compliant Concise Evidence
-format. The Concise Evidence carried here describes Target Environments
-measured by the Lead Attester; Sub-Attester Evidence remains detached
-under <code>submods</code>.</p>
+byte-string-wrapped <code>concise-evidence-map</code> conforming to
+<span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[15]</a></span>. This is the same measurement
+encoding required by the OCP Profile for IETF Entity Attestation Token
+<span class="citation" data-cites="ocp-ietf-eat-profile"><a href="#ref-ocp-ietf-eat-profile" role="doc-biblioref">[16]</a></span>.
+The Concise Evidence carried here describes Target Environments measured
+by the Lead Attester; Sub-Attester Evidence remains detached under
+<code>submods</code>.</p>
 <h1 id="detached-evidence">Detached Sub-Attester Evidence</h1>
 <h2 id="digest-binding">Detached-Submodule-Digest Binding</h2>
 <p>Every Sub-Attester is represented in the signed token by a
@@ -770,7 +770,7 @@ certificate chain. It excludes the SPDM <code>Length</code>,
 encoded.</p>
 <p><code>vca</code> is the observed VCA transcript. It MUST be present
 for SPDM 1.0 and 1.1 and MUST be absent for SPDM 1.2 and later. See
-<span class="citation" data-cites="dmtf-dsp0274"><a href="#ref-dmtf-dsp0274" role="doc-biblioref">[16]</a></span>.</p>
+<span class="citation" data-cites="dmtf-dsp0274"><a href="#ref-dmtf-dsp0274" role="doc-biblioref">[17]</a></span>.</p>
 <h3 id="device-emitted-eat">Device-Emitted EAT</h3>
 
 <pre class="cddl _placeholder"><code>device-eat-cmw = [
@@ -801,7 +801,7 @@ validation in <a href="#verification">Verification</a>. Implementations
 SHOULD enforce a deployment-specific maximum nesting depth.</p>
 <h3 id="spdm-carried-tcg-dice-concise-evidence">SPDM-Carried TCG DICE
 Concise Evidence</h3>
-<p>Signed measurements carrying TCG DICE Concise Evidence <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[17]</a></span> use the
+<p>Signed measurements carrying TCG DICE Concise Evidence <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[15]</a></span> use the
 <code>spdm-evidence-cmw</code> schema. The measurement blocks are
 preserved verbatim. The component performing collection does not need to
 distinguish ordinary SPDM measurements from blocks carrying TCG DICE
@@ -942,8 +942,8 @@ device-emitted EAT as Sub-Attester Evidence, that EAT MUST conform to
 the OCP Profile for IETF Entity Attestation Token. Native SPDM Evidence
 remains permitted and need not be converted to a device EAT. This OCP
 profile also constrains the Lead Attester’s claim 273 measurements to
-the Concise Evidence requirements of the OCP Profile for IETF Entity
-Attestation Token <span class="citation" data-cites="ocp-ietf-eat-profile"><a href="#ref-ocp-ietf-eat-profile" role="doc-biblioref">[15]</a></span>.</p>
+the TCG DICE Concise Evidence encoding used by the OCP Profile for IETF
+Entity Attestation Token.</p>
 <p>This specification requests OID <code>1.3.6.1.4.1.42623.1.4</code>
 for the OCP Composite EAT profile. The request follows the existing OCP
 Security branch and uses the next child value after the documented
@@ -1080,7 +1080,7 @@ digests are exact conformance vectors for the CMW, detached Claims-Set,
 and digest boundaries.</p>
 <h1 id="appendix-cddl">Collected CDDL</h1>
 <p>The following CDDL collects the profile grammar. The external
-<code>concise-evidence-map</code> type is defined by <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[17]</a></span> and is required when validating the
+<code>concise-evidence-map</code> type is defined by <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[15]</a></span> and is required when validating the
 collected grammar. While the requested OID remains pending,
 <code>profile-oid</code> accepts the untagged absolute-OID byte string
 required by <span class="citation" data-cites="ietf-rfc9711"><a href="#ref-ietf-rfc9711" role="doc-biblioref">[2]</a></span>. This
@@ -1246,18 +1246,18 @@ Wrapper.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/ht
 <div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“Internet X.509 Public Key Infrastructure
 Certificate and CRL Profile.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc5280">https://datatracker.ietf.org/doc/html/rfc5280</a></div>
 </div>
+<div id="ref-tcg-dice-concise-evidence-binding-for-spdm" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“DICE Concise Evidence Binding for
+SPDM.”</span> Trusted Computing Group, Sept. 2025. Available: <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf">https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf</a></div>
+</div>
 <div id="ref-ocp-ietf-eat-profile" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“OCP Profile for IETF Entity Attestation
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“OCP Profile for IETF Entity Attestation
 Token, Version 1.0, Section: Concise Evidence.”</span> Open Compute
 Project. Available: <a href="https://opencomputeproject.github.io/Security/ietf-eat-profile/HEAD/#concise-evidence">https://opencomputeproject.github.io/Security/ietf-eat-profile/HEAD/#concise-evidence</a></div>
 </div>
 <div id="ref-dmtf-dsp0274" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“Security Protocol and Data Model (SPDM)
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“Security Protocol and Data Model (SPDM)
 Specification.”</span> DMTF, Sept. 2024. Available: <a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.3.2.pdf">https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.3.2.pdf</a></div>
-</div>
-<div id="ref-tcg-dice-concise-evidence-binding-for-spdm" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“DICE Concise Evidence Binding for
-SPDM.”</span> Trusted Computing Group, Sept. 2025. Available: <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf">https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf</a></div>
 </div>
 <div id="ref-ietf-rats-corim" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“Concise Reference Integrity
