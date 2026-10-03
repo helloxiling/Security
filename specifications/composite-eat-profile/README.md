@@ -16,9 +16,11 @@ Pages workflow will publish the rendered specification at
 
 The specification source is available in [spec.ocp](./spec.ocp).
 
-This document adopts the Composite EAT mechanism defined in
-[`draft-sun-rats-composite-eat-00`](https://datatracker.ietf.org/doc/html/draft-sun-rats-composite-eat-00)
-and applies OCP constraints for platform inventory attestation. It uses a
+This document builds on the Composite EAT mechanism in
+[`draft-sun-rats-composite-eat`](https://datatracker.ietf.org/doc/draft-sun-rats-composite-eat/)
+and applies OCP constraints for platform inventory attestation. It carries
+native Evidence as RFC 9999 Record CMWs in CWT claim 299, which differs from the
+provisional claim used by `-00`. It uses a
 distinct profile OID in claim 265. The working draft requests
 `1.3.6.1.4.1.42623.1.4`; this proposed assignment remains pending OCP approval
 and must not be treated as assigned until OCP confirms it. The existing OCP

@@ -4,7 +4,7 @@ references:
     publisher: "IETF"
     issued:
       year: 2026
-    url: "https://datatracker.ietf.org/doc/html/draft-sun-rats-composite-eat-00"
+    url: "https://datatracker.ietf.org/doc/draft-sun-rats-composite-eat/"
   - id: "tcg-dice-concise-evidence-binding-for-spdm"
     title: "DICE Concise Evidence Binding for SPDM"
     publisher: "Trusted Computing Group"
@@ -12,6 +12,10 @@ references:
       year: 2025
       month: 9
     url: "https://trustedcomputinggroup.org/wp-content/uploads/TCG-DICE-Concise-Evidence-Binding-for-SPDM-V1.1_pub.pdf"
+  - id: "ocp-ietf-eat-profile"
+    title: "OCP Profile for IETF Entity Attestation Token, Version 1.0, Section: Concise Evidence"
+    publisher: "Open Compute Project"
+    url: "https://opencomputeproject.github.io/Security/ietf-eat-profile/HEAD/#concise-evidence"
   - id: "ietf-rats-corim"
     title: "Concise Reference Integrity Manifest"
     publisher: "IETF"
@@ -19,10 +23,6 @@ references:
       year: 2020
       month: 11
     url: "https://datatracker.ietf.org/doc/draft-ietf-rats-corim"
-  - id: "ietf-rats-eat-da"
-    title: "EAT Profile for Confidential Computing Device Attestation"
-    publisher: "IETF"
-    url: "https://datatracker.ietf.org/doc/draft-poirier-rats-eat-da/"
   - id: "dmtf-dsp0274"
     title: "Security Protocol and Data Model (SPDM) Specification"
     publisher: "DMTF"
@@ -60,6 +60,13 @@ references:
     title: "CBOR Object Signing and Encryption (COSE): Initial Algorithms"
     publisher: "IETF"
     url: "https://datatracker.ietf.org/doc/html/rfc9053"
+  - id: "ietf-rfc9054"
+    title: "CBOR Object Signing and Encryption (COSE): Hash Algorithms"
+    publisher: "IETF"
+    issued:
+      year: 2022
+      month: 8
+    url: "https://datatracker.ietf.org/doc/html/rfc9054"
   - id: "ietf-rfc9360"
     title: "CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates"
     publisher: "IETF"
@@ -84,10 +91,6 @@ references:
     title: "Concise Binary Object Representation (CBOR) Tags for Object Identifiers"
     publisher: "IETF"
     url: "https://datatracker.ietf.org/doc/html/rfc9090"
-  - id: "ietf-rfc9393"
-    title: "Concise Software Identification Tags"
-    publisher: "IETF"
-    url: "https://datatracker.ietf.org/doc/html/rfc9393"
   - id: "ietf-rfc2119"
     title: "Key words for use in RFCs to Indicate Requirement Levels"
     publisher: "IETF"

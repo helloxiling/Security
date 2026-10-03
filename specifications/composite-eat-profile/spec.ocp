@@ -1,12 +1,14 @@
 ---
 title: "OCP Composite EAT Profile for Platform Inventory Attestation"
-project: OCP Foundation
+project: Security
 version: "0.8.0"
-type: Design
-Project: Security
-authors: Xiling Sun (Microsoft), Roksana Golizadeh Mojarad (Microsoft)
+type: DESIGN
+authors:
+  - Xiling Sun (Microsoft)
+  - Roksana Golizadeh Mojarad (Microsoft)
+  - Raghu Krishnamurthy (NVIDIA)
 bibliography: bibliography.yaml
-License: 
+License:
 status: draft
 released: false
 class: specification
@@ -14,29 +16,21 @@ date: 2026-09-10
 paragraph_numbering: no
 header-includes: |
   \newenvironment{smallcode}{\begin{footnotesize}}{\end{footnotesize}}
-...  
-
-<!-- \currenttemplateversion -->
+...
 
 ---
 
 \tableofcontents
 
-<!-- \listoffigures -->
-
 \listoftables
-
-# License
 
 # License
 
 ## Open Web Foundation (OWF) CLA
 
-**To Be Done** ideally we simply pull in another md file for license*
-
 Contributions to this Specification are made under the terms and conditions set forth in **Modified Open Web Foundation Agreement 0.9 (OWFa 0.9)**. (As of October 16, 2024)  (“Contribution License”) by:
 
-**Instruction:** add in contributors
+- Microsoft Corporation
 
 Usage of this Specification is governed by the terms and conditions set forth in **Modified OWFa 0.9 Final Specification Agreement (FSA)** (As of October 16, 2024) **(“Specification License”)**.
 
@@ -46,20 +40,18 @@ For actual executed copies of either agreement, please contact OCP directly.
 
 NOTWITHSTANDING THE FOREGOING LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "AS IS" AND OCP EXPRESSLY DISCLAIMS ANY WARRANTIES (EXPRESS, IMPLIED, OR OTHERWISE), INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE, OR TITLE, RELATED TO THE SPECIFICATION. NOTICE IS HEREBY GIVEN, THAT OTHER RIGHTS NOT GRANTED AS SET FORTH ABOVE, INCLUDING WITHOUT LIMITATION, RIGHTS OF THIRD PARTIES WHO DID NOT EXECUTE THE ABOVE LICENSES, MAY BE IMPLICATED BY THE IMPLEMENTATION OF OR COMPLIANCE WITH THIS SPECIFICATION. OCP IS NOT RESPONSIBLE FOR IDENTIFYING RIGHTS FOR WHICH A LICENSE MAY BE REQUIRED IN ORDER TO IMPLEMENT THIS SPECIFICATION. THE ENTIRE RISK AS TO IMPLEMENTING OR OTHERWISE USING THE SPECIFICATION IS ASSUMED BY YOU. IN NO EVENT WILL OCP BE LIABLE TO YOU FOR ANY MONETARY DAMAGES WITH RESPECT TO ANY CLAIMS RELATED TO, OR ARISING OUT OF YOUR USE OF THIS SPECIFICATION, INCLUDING BUT NOT LIMITED TO ANY LIABILITY FOR LOST PROFITS OR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS SPECIFICATION, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND EVEN IF OCP HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Copyright / Trademark
 
-<!---
-THE UPDATED DEFAULT CONTRIBUTOR LICENSE AGREEMENT (CLA) IS [OWFa 0.9](https://146a55aca6f00848c565-a7635525d40ac1c70300198708936b4e.ssl.cf1.rackcdn.com/images/ed0befaf86bee2568ad720ff4a9a554d1f4260f7.pdf).
-PLEASE VERIFY THE CORRECT CLA/FSA IS USED AND EXECUTED FOR THIS CONTRIBUTION.
--->
-
+Names and brands mentioned may be claimed as trademarks by their respective
+owners. IETF is a registered trademark of IETF Trust.
 
 ---
 
 **Revision History**
 
-| Reversion | Date | Author(s) | Description |
+| Revision | Date | Author(s) | Description |
 |:----------|:------------|:--------------------------------------------|:-------------------|
-| 0.8.0 | 2026-09-10|  Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft) | Initial draft for OCP project review |
+| 0.8.0 | 2026-09-10 | Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft)<br>\newline Raghu Krishnamurthy (NVIDIA) | Initial draft for OCP project review |
 
 ---
 
@@ -255,20 +247,18 @@ applicable, additional transport or hardware assurances.
 
 ## Profile Identifier
 
-This specification requests assignment of the following object identifier (OID)
-from the OCP Security branch:
+This specification requests OCP assignment of `1.3.6.1.4.1.42623.1.4` to the
+OCP Composite EAT profile. Version 0.8.0 otherwise defines the
+implementation-complete wire format. Assignment is requested now so that
+producer and Verifier implementations do not assume an unapproved identifier.
+Until OCP confirms it, implementations MUST NOT treat this value as assigned.
 
-`ocp-composite-eat OBJECT IDENTIFIER ::= {1 3 6 1 4 1 42623 1 4}`
-
-The requested dotted-decimal value is `1.3.6.1.4.1.42623.1.4`. This value is a
-proposed assignment pending confirmation by OCP and is not assigned or reserved
-by publication of this working draft. Implementations MUST NOT emit it as an
-assigned profile identifier until OCP approves the assignment.
-
-After approval, the `eat_profile` claim (claim 265) MUST contain this OID. In
-CBOR, it MUST use the preferred PEN-relative encoding with tag 112 defined by
-[@{ietf-rfc9090}]. The resulting diagnostic notation is
-`112(h'82cc7f0104')`.
+After approval, claim 265 MUST contain the assigned absolute OID encoded without
+a CBOR OID tag, as required by [@{ietf-rfc9711}]. For the requested value, the
+claim value is `h'2b0601040182cc7f0104'` using the encoding defined by
+[@{ietf-rfc9090}]. Final IETF references and registration status will be
+reconciled before version 1.0.0; any wire-incompatible change requires a new
+profile identifier.
 
 The OID `1.3.6.1.4.1.42623.1.3` identifies the OCP Profile for IETF Entity
 Attestation Token and MUST NOT be used as the profile identifier of the
@@ -297,7 +287,6 @@ This section resolves the profile items in Section 6 of [@{ietf-rfc9711}].
 | Lead measurements | TCG DICE Concise Evidence using CoAP Content-Format 10571 (`application/ce+cbor`) |
 | Detached evidence claim | CWT `cmw` claim 299 [@{ietf-rfc9999}] |
 | Additional claims | Prohibited by the closed CDDL maps in this profile |
-<!-- {: title="Composite EAT profile conformance"} -->
 Table: Composite EAT profile conformance {#tbl:acsr-req}
 
 
@@ -379,6 +368,9 @@ The `eat_nonce` claim contains exactly one nonce. The Verifier MUST generate a
 new nonce for every request. The same nonce MUST be used to obtain every
 nonce-capable Sub-Attester evidence item included in the bundle.
 
+Claim 256 contains the Lead Attester `ueid` and MUST conform to
+[@{ietf-rfc9711}].
+
 Claim 265 MUST equal the OCP Composite EAT profile OID approved before final
 publication. The requested value is not an assigned profile identifier until
 OCP approves it.
@@ -401,9 +393,10 @@ This constrains the `measurements` claim from [@{ietf-rfc9711}]. Each entry MUST
 use CoAP Content-Format 10571 (`application/ce+cbor`) and contain a
 byte-string-wrapped `concise-evidence-map` conforming to
 [@{tcg-dice-concise-evidence-binding-for-spdm}]. This is the same measurement
-encoding required by the OCP Profile for IETF Entity Attestation Token. The
-Concise Evidence carried here describes Target Environments measured by the
-Lead Attester; Sub-Attester Evidence remains detached under `submods`.
+encoding required by the OCP Profile for IETF Entity Attestation Token
+[@{ocp-ietf-eat-profile}]. The Concise Evidence carried here describes Target
+Environments measured by the Lead Attester; Sub-Attester Evidence remains
+detached under `submods`.
 
 # Detached Sub-Attester Evidence {#detached-evidence}
 
@@ -436,16 +429,21 @@ Each detached Claims-Set MUST satisfy the core deterministic encoding
 requirements of Section 4.2.1 of [@{ietf-rfc8949}]. A Verifier MUST reject a
 Claims-Set that does not satisfy those requirements.
 
-The digest input is the encoded Claims-Set bytes directly, not the byte-string
-wrapper used by the bundle and not a textual encoding. SHA-384, COSE algorithm
--43, MUST be used for every detached-submodule digest. This algorithm is
-independent of a measurement hash negotiated by a native protocol.
+As required by Section 4.2.18.2 of [@{ietf-rfc9711}], the digest input is the
+encoded Claims-Set bytes directly, not the byte-string wrapper used by the
+bundle and not a textual encoding. SHA-384, COSE algorithm -43, MUST be used for
+every detached-submodule digest. This algorithm is independent of a measurement
+hash negotiated by a native protocol.
 
 ## Native Evidence Carriage {#native-evidence}
 
 Each detached Claims-Set contains registered CWT claim 299 (`cmw`) from
 [@{ietf-rfc9999}]. Its value is one CMW Record. The CMW type identifies the
 native evidence format.
+
+Only the three Record CMW types defined below are permitted. Tag and Collection
+CMWs, CoAP Content-Format type identifiers, and omission of `ind` are
+prohibited.
 
 ~~~ cddl
 detached-claims-set = {
@@ -656,22 +654,23 @@ sensitive. A Verifier SHOULD disclose only the Attestation Result needed by a
 Relying Party rather than forwarding the bundle. Nonces SHOULD be unpredictable
 and MUST NOT encode user, account, workload, or other identifying information.
 
-# IANA Considerations
+# IANA Considerations {#iana}
 
-This OCP specification requests no IANA action. It uses
-`application/spdm-evidence+cbor`, whose registration is requested by the aligned
-IETF Composite EAT specification [@{draft-sun-rats-composite-eat}]. The media
-type identifies the deterministic CBOR encoding of `spdm-evidence` defined in
-this document. Until the registration is complete, implementations remain
-subject to the status of that IETF request.
+This specification requests no IANA action. The media type
+`application/spdm-evidence+cbor` identifies the deterministic CBOR encoding of
+the `spdm-evidence` structure in [Native Evidence Carriage](#native-evidence).
+It is not yet registered; its registration is planned through the IETF
+Composite EAT specification [@{draft-sun-rats-composite-eat}]. If the
+registration is unavailable or differs from this specification, a revision of
+this specification will select a different media type and profile identifier.
 
 # Alignment and Change Control
 
-This profile adopts the Composite EAT mechanism defined in
-`draft-sun-rats-composite-eat-00` [@{draft-sun-rats-composite-eat}] and applies
-additional constraints for OCP platform inventory attestation. Unless
-constrained by this specification, the Composite EAT structure and processing
-rules remain aligned with the IETF specification.
+This profile builds on the IETF Composite EAT work
+[@{draft-sun-rats-composite-eat}] and is self-contained: all requirements are
+defined here. Unlike `draft-sun-rats-composite-eat-00`, which uses a
+provisional claim, this profile carries native Evidence as RFC 9999 Record CMWs
+in CWT claim 299.
 
 The IETF and OCP specifications define separate full EAT profiles. A token
 identifies exactly one of them through claim 265; it does not identify both.
@@ -690,9 +689,8 @@ assignment authority and MUST confirm that the requested child value is
 available before final publication. The OCP Profile for IETF Entity Attestation
 Token OID, `1.3.6.1.4.1.42623.1.3`, identifies a different full EAT profile and
 cannot be reused for the Composite EAT main token. After OCP approval, the
-profile CDDL MUST be narrowed to the exact assigned OID encoding. Final
-publication also depends on registration of `application/spdm-evidence+cbor`
-through the aligned IETF work.
+profile CDDL MUST be narrowed to the exact assigned OID encoding. See
+[IANA Considerations](#iana) for the status of `application/spdm-evidence+cbor`.
 
 Changes to bundle structure, claims, algorithms, native evidence forms,
 deterministic encoding, digest input, or verification behavior require explicit
@@ -727,7 +725,7 @@ detached Claims-Set vectors follow the diagnostic form.
     <<{
       10: h'000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f',
       256: h'0111111111111111111111111111111111',
-      265: 112(h'82cc7f0104'), / requested OID; pending OCP approval /
+      265: h'2b0601040182cc7f0104', / requested OID; pending OCP approval /
       266: {
         "env.nic.0": [-43,
           h'c322d4b38698e2a652dec5ef6c9158a1f5c654e415870d9a
@@ -835,9 +833,11 @@ conformance vectors for the CMW, detached Claims-Set, and digest boundaries.
 The following CDDL collects the profile grammar. The external
 `concise-evidence-map` type is defined by
 [@{tcg-dice-concise-evidence-binding-for-spdm}] and is required when
-validating the collected grammar. `profile-oid` accepts a PEN-relative OID
-structure while the requested OID remains pending. After OCP approves the
-assignment, it MUST be narrowed to the exact assigned OID encoding.
+validating the collected grammar. While the requested OID remains pending,
+`profile-oid` accepts the untagged absolute-OID byte string required by
+[@{ietf-rfc9711}]. This placeholder MUST NOT be treated as authorization to emit
+an arbitrary OID. After OCP approves the assignment, it MUST be narrowed to the
+exact assigned OID encoding.
 
 ```include {.small}
 !include cddl/composite_eat_ocp_profile.cddl

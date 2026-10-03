@@ -1,8 +1,8 @@
 ; OCP Composite EAT profile CDDL.
 ; Requested profile OID: 1.3.6.1.4.1.42623.1.4, pending OCP approval.
-; Its tag-112 content is h'82cc7f0104'. The profile-oid value will be fixed
-; after approval. This placeholder type MUST NOT be treated as authorization to
-; emit an arbitrary PEN-relative OID.
+; RFC 9711 encodes claim 265 as untagged absolute-OID content. The requested
+; value is h'2b0601040182cc7f0104'. The profile-oid value will be fixed after
+; approval. This placeholder MUST NOT authorize an arbitrary OID.
 
 composite-bundle = #6.602([
   main-token: bstr .cbor composite-eat,
@@ -40,7 +40,7 @@ composite-eat-claims = {
   266: submods-type
 }
 
-profile-oid = #6.112(bstr)
+profile-oid = bstr
 
 ; concise-evidence-map is defined by the TCG DICE Concise Evidence Binding for
 ; SPDM specification and is an external CDDL dependency of this profile.
