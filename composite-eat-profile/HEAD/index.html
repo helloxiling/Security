@@ -105,7 +105,7 @@ Attestation</h1>
 </div>
 <div id="bottom">
 <strong>
-	<p>Date: 2026-09-10</p>
+	<p>Date: 2026-10-02</p>
 </strong>
 </div>
 <h1>Table of contents</h1>
@@ -262,10 +262,10 @@ respective owners. IETF is a registered trademark of IETF Trust.</p>
 <tbody>
 <tr>
 <td style="text-align: left;">0.8.0</td>
-<td style="text-align: left;">2026-09-10</td>
+<td style="text-align: left;">2026-10-02</td>
 <td style="text-align: left;">Xiling Sun (Microsoft)<br>Roksana
 Golizadeh Mojarad (Microsoft)<br>Raghu Krishnamurthy (NVIDIA)</td>
-<td style="text-align: left;">Initial draft for OCP project review</td>
+<td style="text-align: left;">Address OCP review feedback</td>
 </tr>
 </tbody>
 </table>
@@ -1075,9 +1075,10 @@ The deterministic parent Claims-Set encoding is:</p>
 <code>41a15dc29c5be302be56efcd77a2d63afa7befdacf28115b</code>
 <code>35afbca6fcab5d0701201ccdfd9e766246457ba0afaf9e27</code>.</p>
 <p>The native evidence values in these vectors are synthetic and are not
-valid signatures or complete protocol responses. The encodings and
-digests are exact conformance vectors for the CMW, detached Claims-Set,
-and digest boundaries.</p>
+valid signatures or complete protocol responses. The outer encodings and
+digests are exact test vectors for the CMW, detached Claims-Set, and
+digest boundaries; they are not complete conformance vectors for the
+embedded native evidence formats.</p>
 <h1 id="appendix-cddl">Collected CDDL</h1>
 <p>The following CDDL collects the profile grammar. The external
 <code>concise-evidence-map</code> type is defined by <span class="citation" data-cites="tcg-dice-concise-evidence-binding-for-spdm"><a href="#ref-tcg-dice-concise-evidence-binding-for-spdm" role="doc-biblioref">[15]</a></span> and is required when validating the
@@ -1194,7 +1195,7 @@ Architecture.”</span> IETF, Jan. 2023. Available: <a href="https://datatracker
 </div>
 <div id="ref-ietf-rfc9711" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span>“The Entity Attestation Token
-(EAT).”</span> IETF, Feb. 2025. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9711">https://datatracker.ietf.org/doc/html/rfc9711</a></div>
+(EAT).”</span> IETF, Apr. 2025. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9711">https://datatracker.ietf.org/doc/html/rfc9711</a></div>
 </div>
 <div id="ref-ietf-rfc2119" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span>“Key words for use in RFCs to Indicate
@@ -1219,7 +1220,7 @@ Structures.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc
 </div>
 <div id="ref-ietf-rfc9782" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[8] </div><div class="csl-right-inline"><span>“Entity Attestation Token (EAT) Media
-Types.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9782">https://datatracker.ietf.org/doc/html/rfc9782</a></div>
+Types.”</span> IETF, May 2025. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9782">https://datatracker.ietf.org/doc/html/rfc9782</a></div>
 </div>
 <div id="ref-ietf-rfc9052" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[9] </div><div class="csl-right-inline"><span>“CBOR Object Signing and Encryption
@@ -1239,8 +1240,8 @@ Types.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html
 Certificates.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9360">https://datatracker.ietf.org/doc/html/rfc9360</a></div>
 </div>
 <div id="ref-ietf-rfc9999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span>“The RATS Conceptual Message
-Wrapper.”</span> IETF. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9999">https://datatracker.ietf.org/doc/html/rfc9999</a></div>
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span>“Remote ATtestation procedureS (RATS)
+Conceptual Message Wrapper (CMW).”</span> IETF, 2026. Available: <a href="https://datatracker.ietf.org/doc/html/rfc9999">https://datatracker.ietf.org/doc/html/rfc9999</a></div>
 </div>
 <div id="ref-ietf-rfc5280" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“Internet X.509 Public Key Infrastructure
@@ -1261,7 +1262,7 @@ Specification.”</span> DMTF, Sept. 2024. Available: <a href="https://www.dmtf.
 </div>
 <div id="ref-ietf-rats-corim" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“Concise Reference Integrity
-Manifest.”</span> IETF, Nov. 2020. Available: <a href="https://datatracker.ietf.org/doc/draft-ietf-rats-corim">https://datatracker.ietf.org/doc/draft-ietf-rats-corim</a></div>
+Manifest.”</span> IETF, July 2026. Available: <a href="https://datatracker.ietf.org/doc/draft-ietf-rats-corim">https://datatracker.ietf.org/doc/draft-ietf-rats-corim</a></div>
 </div>
 <div id="ref-ietf-rfc8392" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[19] </div><div class="csl-right-inline"><span>“CBOR Web Token (CWT).”</span> IETF.
