@@ -20,8 +20,8 @@ references:
     title: "Concise Reference Integrity Manifest"
     publisher: "IETF"
     issued:
-      year: 2020
-      month: 11
+      year: 2026
+      month: 7
     url: "https://datatracker.ietf.org/doc/draft-ietf-rats-corim"
   - id: "dmtf-dsp0274"
     title: "Security Protocol and Data Model (SPDM) Specification"
@@ -35,15 +35,20 @@ references:
     publisher: "IETF"
     issued:
       year: 2025
-      month: 2
+      month: 4
     url: "https://datatracker.ietf.org/doc/html/rfc9711"
   - id: "ietf-rfc9999"
-    title: "The RATS Conceptual Message Wrapper"
+    title: "Remote ATtestation procedureS (RATS) Conceptual Message Wrapper (CMW)"
     publisher: "IETF"
+    issued:
+      year: 2026
     url: "https://datatracker.ietf.org/doc/html/rfc9999"
   - id: "ietf-rfc9782"
     title: "Entity Attestation Token (EAT) Media Types"
     publisher: "IETF"
+    issued:
+      year: 2025
+      month: 5
     url: "https://datatracker.ietf.org/doc/html/rfc9782"
   - id: "ietf-rfc9334"
     title: "Remote ATtestation procedureS (RATS) Architecture"

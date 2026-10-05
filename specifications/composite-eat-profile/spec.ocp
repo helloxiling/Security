@@ -12,7 +12,7 @@ License:
 status: draft
 released: false
 class: specification
-date: 2026-09-10
+date: 2026-10-02
 paragraph_numbering: no
 header-includes: |
   \newenvironment{smallcode}{\begin{footnotesize}}{\end{footnotesize}}
@@ -51,7 +51,7 @@ owners. IETF is a registered trademark of IETF Trust.
 
 | Revision | Date | Author(s) | Description |
 |:----------|:------------|:--------------------------------------------|:-------------------|
-| 0.8.0 | 2026-09-10 | Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft)<br>\newline Raghu Krishnamurthy (NVIDIA) | Initial draft for OCP project review |
+| 0.8.0 | 2026-10-02 | Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft)<br>\newline Raghu Krishnamurthy (NVIDIA) | Address OCP review feedback |
 
 ---
 
@@ -825,8 +825,9 @@ Its SHA-384 digest is
 `35afbca6fcab5d0701201ccdfd9e766246457ba0afaf9e27`.
 
 The native evidence values in these vectors are synthetic and are not valid
-signatures or complete protocol responses. The encodings and digests are exact
-conformance vectors for the CMW, detached Claims-Set, and digest boundaries.
+signatures or complete protocol responses. The outer encodings and digests are
+exact test vectors for the CMW, detached Claims-Set, and digest boundaries; they
+are not complete conformance vectors for the embedded native evidence formats.
 
 # Collected CDDL {#appendix-cddl}
 
