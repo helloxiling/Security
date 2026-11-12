@@ -12,7 +12,7 @@ License:
 status: draft
 released: false
 class: specification
-date: 2026-10-02
+date: 2026-11-11
 paragraph_numbering: no
 header-includes: |
   \newenvironment{smallcode}{\begin{footnotesize}}{\end{footnotesize}}
@@ -51,7 +51,7 @@ owners. IETF is a registered trademark of IETF Trust.
 
 | Revision | Date | Author(s) | Description |
 |:----------|:------------|:--------------------------------------------|:-------------------|
-| 0.8.0 | 2026-10-02 | Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft)<br>\newline Raghu Krishnamurthy (NVIDIA) | Address OCP review feedback |
+| 0.8.0 | 2026-11-11 | Xiling Sun (Microsoft)<br>\newline Roksana Golizadeh Mojarad (Microsoft)<br>\newline Raghu Krishnamurthy (NVIDIA) | Address Steering Committee review feedback |
 
 ---
 
@@ -173,6 +173,18 @@ Target Environment Identifier:
   for a Sub-Attester in both the signed `submods` claim and detached Claims-Set
   map.
 
+| Acronym | Definition |
+| --- | --- |
+| CBOR | Concise Binary Object Representation |
+| CDDL | Concise Data Definition Language |
+| CMW | Conceptual Message Wrapper |
+| COSE | CBOR Object Signing and Encryption |
+| CWT | CBOR Web Token |
+| EAT | Entity Attestation Token |
+| OID | Object Identifier |
+| SPDM | Security Protocol and Data Model |
+Table: Acronyms and Abbreviations {#tbl:acronyms-and-abbreviations}
+
 # Architecture and Trust Model
 
 ## Composite Device Architecture and Trust Boundaries
@@ -233,6 +245,7 @@ platform composition.
 | Target Environment Identifier mislabeling | Compare the proven native identity with the identity authorized for that environment. |
 | Expected-composition substitution | Authenticate and authorize the expected-composition source according to Verifier policy. |
 | Lead Attester compromise | Treat the platform-scoped binding as compromised; independently protected Sub-Attester Evidence still requires separate validation. |
+Table: Threat Model {#tbl:threat-model}
 
 ## Security Properties and Limits
 
