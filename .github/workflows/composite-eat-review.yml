@@ -1,0 +1,65 @@
+name: Publish Composite EAT review
+
+on:
+  push:
+    branches: [xsun/composite-eat-profile]
+    paths:
+      - specifications/composite-eat-profile/**
+      - .github/workflows/composite-eat-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: composite-eat-review
+  cancel-in-progress: false
+
+jobs:
+  render-and-publish:
+    if: github.repository == 'helloxiling/Security' && github.ref == 'refs/heads/xsun/composite-eat-profile'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: source
+      - uses: actions/checkout@v4
+        with:
+          repository: opencomputeproject/ocp-spec-tools
+          ref: c28385a96b2643a8acb4df96fc6c020405db2c69
+          path: tools
+      - name: Rebuild and verify committed artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          profile=source/specifications/composite-eat-profile
+          pdftotext "$profile/spec.pdf" "$RUNNER_TEMP/committed.txt"
+          bash "$profile/render.sh" "$GITHUB_WORKSPACE/tools"
+          git -C source diff --exit-code -- specifications/composite-eat-profile/spec.html
+          pdftotext "$profile/spec.pdf" "$RUNNER_TEMP/rendered.txt"
+          diff -u "$RUNNER_TEMP/committed.txt" "$RUNNER_TEMP/rendered.txt"
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - name: Publish profile files
+        shell: bash
+        run: |
+          set -euo pipefail
+          profile=source/specifications/composite-eat-profile
+          destination=site/composite-eat-profile/HEAD
+          cp "$profile/spec.html" "$destination/index.html"
+          cp "$profile/spec.pdf" "$destination/spec.pdf"
+          cp "$profile/spec.pdf" "$destination/pdf"
+          git -C site config user.name 'github-actions[bot]'
+          git -C site config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C site add composite-eat-profile/HEAD/index.html composite-eat-profile/HEAD/spec.pdf composite-eat-profile/HEAD/pdf
+          if ! git -C site diff --cached --quiet; then
+            git -C site commit -m 'composite-eat: publish current review artifacts'
+            git -C site push origin HEAD:gh-pages
+          fi
+      - name: Request Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

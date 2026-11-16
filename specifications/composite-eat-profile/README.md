@@ -44,8 +44,27 @@ repository, and then run:
 
 ```sh
 path/to/ocp-spec-tools/docker-pull.sh
-path/to/ocp-spec-tools/docker-run.sh --html spec.html spec.ocp
+bash render.sh path/to/ocp-spec-tools
 ```
+
+Run this command from this directory, or set `OCP_SPEC_TOOLS` to the absolute
+path of the tools checkout. It generates both `spec.html` and `spec.pdf`, with
+numbered captions below the tables. The script uses the OCP renderer and then
+moves its generated LaTeX captions outside `xltabular` to preserve bottom
+borders and table numbering. It stops if the expected caption layout changes.
+For the same template revision as CI, check out
+`c28385a96b2643a8acb4df96fc6c020405db2c69` in `ocp-spec-tools`. The script
+pins the Pandoc container by digest; `DOCKER_IMAGE` can override it for testing.
+
+The rendered HTML and PDF are tracked review artifacts. Rebuild and commit
+them with every source change. The profile date comes from `spec.ocp`, not the
+build date.
+
+On the fork's `xsun/composite-eat-profile` branch, the review publishing
+workflow rebuilds the artifacts, checks HTML and extracted PDF text against
+the committed copies, and refreshes the profile files on the existing
+`gh-pages` branch. Other specifications and the upstream `main` publishing
+workflow are unchanged.
 
 ## Maintaining the specification
 

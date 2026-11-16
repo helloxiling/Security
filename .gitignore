@@ -1,3 +1,5 @@
 *.pdf
 *.html
 .cache
+!specifications/composite-eat-profile/spec.html
+!specifications/composite-eat-profile/spec.pdf
