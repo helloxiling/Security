@@ -29,6 +29,10 @@ jobs:
           repository: opencomputeproject/ocp-spec-tools
           ref: c28385a96b2643a8acb4df96fc6c020405db2c69
           path: tools
+      - name: Install PDF validation tools
+        run: |
+          sudo -n apt-get update
+          sudo -n apt-get install -y --no-install-recommends poppler-utils
       - name: Rebuild and verify committed artifacts
         shell: bash
         run: |
